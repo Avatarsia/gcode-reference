@@ -1,0 +1,822 @@
+(function () {
+  "use strict";
+
+  // -----------------------
+  // i18n (UI only)
+  // -----------------------
+  var I18N = {
+    de: {
+      commands: "Befehle",
+      searchLabel: "Suche",
+      searchPlaceholder: "z.B. G28, home, temp, fan, M109...",
+      hint: "Tipp: Klick auf eine Code-Zeile → Erklärung rechts. Enter springt zum besten Treffer.",
+      explainTitle: "Erklärung",
+      explainEmpty: "Klick auf eine Code-Zeile, um zu sehen, was sie tut.",
+      noResults: "Keine Treffer. Versuch z.B. <code>home</code>, <code>temp</code>, <code>fan</code> oder <code>G28</code>.",
+      requires: "Benötigt",
+      promoTitle: "Hilfe bei Marlin / G-code nötig?",
+      promoText: "Wenn du bei Firmware, Start-/End-Gcode, Kalibrierung oder Fehlersuche nicht weiterkommst: Wir helfen dir schnell und praxisnah.",
+      promoCta: "3D Partner kontaktieren"
+    },
+    en: {
+      commands: "Commands",
+      searchLabel: "Search",
+      searchPlaceholder: "e.g. G28, home, temp, fan, M109...",
+      hint: "Tip: Click a code line → explanation (right). Press Enter to jump to best match.",
+      explainTitle: "Explanation",
+      explainEmpty: "Click a code line to see what it does.",
+      noResults: "No results. Try <code>home</code>, <code>temp</code>, <code>fan</code> or <code>G28</code>.",
+      requires: "Requires",
+      promoTitle: "Need help with Marlin / G-code?",
+      promoText: "If you’re stuck with firmware, start/end G-code, calibration, or troubleshooting: we can help quickly and practically.",
+      promoCta: "Contact 3D Partner"
+    }
+  };
+
+  function getStoredLang() {
+    try { return localStorage.getItem("gref_lang") || ""; } catch (e) { return ""; }
+  }
+  function setStoredLang(lang) {
+    try { localStorage.setItem("gref_lang", lang); } catch (e) {}
+  }
+
+  // -----------------------
+  // Helpers
+  // -----------------------
+  function $(root, sel) { return root.querySelector(sel); }
+  function $all(root, sel) { return Array.prototype.slice.call(root.querySelectorAll(sel)); }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function (m) {
+      return ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[m];
+    });
+  }
+
+  function textFromLang(obj, lang) {
+    if (!obj) return "";
+    if (typeof obj === "string") return obj;
+    // object like {de:"", en:""}
+    if (obj[lang]) return obj[lang];
+    if (obj.de) return obj.de;
+    // fallback: first value
+    var keys = Object.keys(obj);
+    return keys.length ? obj[keys[0]] : "";
+  }
+
+  function normalizeQuery(q) { return String(q || "").trim(); }
+
+  function debounce(fn, ms) {
+    var t = null;
+    return function () {
+      var args = arguments;
+      clearTimeout(t);
+      t = setTimeout(function () { fn.apply(null, args); }, ms);
+    };
+  }
+
+  function stripComments(line) {
+    var s = String(line);
+    // Remove parenthesized comments
+    s = s.replace(/\([^)]*\)/g, "");
+    // Remove semicolon comments
+    var semi = s.indexOf(";");
+    if (semi !== -1) s = s.slice(0, semi);
+    return s.trim();
+  }
+
+  function normalizeCommandToken(token) {
+    var t = String(token || "").toUpperCase();
+    var m = /^([A-Z])(\d+(?:\.\d+)?)$/.exec(t);
+    if (!m) return t;
+    var letter = m[1];
+    var num = m[2];
+    var parts = num.split(".");
+    var intPart = parts[0].replace(/^0+/, "");
+    if (intPart === "") intPart = "0";
+    if (parts.length === 1) return letter + intPart;
+    var dec = parts[1].replace(/0+$/, "");
+    if (dec === "") return letter + intPart;
+    return letter + intPart + "." + dec;
+  }
+
+  function isCommandToken(token, commandSet) {
+    if (!token) return false;
+    var t = String(token).toUpperCase();
+    if (commandSet) {
+      if (commandSet[t]) return true;
+      var norm = normalizeCommandToken(t);
+      if (commandSet[norm]) return true;
+      return false;
+    }
+    return /^[A-Z]\d+(?:\.\d+)?$/i.test(t);
+  }
+
+  function tokenizeLineSections(line, commandSet) {
+    var cleaned = stripComments(line);
+    if (!cleaned) return [];
+    var parts = cleaned.split(/\s+/).filter(Boolean);
+    if (!parts.length) return [];
+
+    var sections = [];
+    var current = null;
+    var pendingTokens = [];
+
+    function pushCurrent() {
+      if (!current) return;
+      current.line = current.lineTokens.join(" ");
+      sections.push({ line: current.line, tokens: current.tokens });
+      current = null;
+    }
+
+    function addParamToken(token, target) {
+      var k = token[0] ? token[0].toUpperCase() : "";
+      var v = token.slice(1);
+      if (/^[A-Z]$/.test(k)) {
+        if (v.length > 0) target.tokens.push({ k: k, v: v });
+        else target.tokens.push({ k: k, v: "" });
+      }
+    }
+
+    for (var i = 0; i < parts.length; i += 1) {
+      var token = parts[i];
+      if (isCommandToken(token, commandSet)) {
+        pushCurrent();
+        current = {
+          lineTokens: pendingTokens.length ? pendingTokens.concat([token]) : [token],
+          tokens: [{ k: "cmd", v: token }]
+        };
+        if (pendingTokens.length) {
+          for (var p = 0; p < pendingTokens.length; p += 1) {
+            addParamToken(pendingTokens[p], current);
+          }
+          pendingTokens = [];
+        }
+        continue;
+      }
+      if (!current) {
+        pendingTokens.push(token);
+        continue;
+      }
+      current.lineTokens.push(token);
+      addParamToken(token, current);
+    }
+
+    pushCurrent();
+    return sections;
+  }
+
+  function paramLabel(key, lang) {
+    var de = {
+      A: "Zusatzachse",
+      B: "Zusatzachse",
+      C: "Zusatzachse",
+      D: "Werkzeugradius-Kompensation / Durchmesser",
+      E: "Extrusionslänge / Extruder",
+      F: "Vorschub / Feedrate",
+      G: "G-Befehl",
+      H: "Werkzeuglängen-Offset / Heizer-Nummer",
+      I: "Bogenmittelpunkt-Versatz",
+      J: "Bogenmittelpunkt-Versatz",
+      K: "Bogenmittelpunkt-Versatz",
+      L: "Wiederholungen / Modus",
+      M: "M-Befehl",
+      N: "Zeilennummer",
+      O: "Programm / Subroutine",
+      P: "Zeit / Parameterwert",
+      Q: "Schrittweite / Parameter",
+      R: "Radius / Referenzwert",
+      S: "Wert (z.B. Temperatur/Drehzahl)",
+      T: "Werkzeug / Extruder",
+      U: "Zusatzachse",
+      V: "Zusatzachse",
+      W: "Zusatzachse",
+      X: "Position (X)",
+      Y: "Position (Y)",
+      Z: "Position (Z)"
+    };
+    var en = {
+      A: "Additional axis",
+      B: "Additional axis",
+      C: "Additional axis",
+      D: "Tool radius comp / Diameter",
+      E: "Extrusion length / Extruder",
+      F: "Feedrate",
+      G: "G command",
+      H: "Tool length offset / Heater number",
+      I: "Arc center offset",
+      J: "Arc center offset",
+      K: "Arc center offset",
+      L: "Repetitions / Mode",
+      M: "M command",
+      N: "Line number",
+      O: "Program / Subroutine",
+      P: "Time / Parameter value",
+      Q: "Step / Parameter",
+      R: "Radius / Reference value",
+      S: "Value (e.g. temperature/speed)",
+      T: "Tool / Extruder",
+      U: "Additional axis",
+      V: "Additional axis",
+      W: "Additional axis",
+      X: "Position (X)",
+      Y: "Position (Y)",
+      Z: "Position (Z)"
+    };
+    var map = (lang === "de") ? de : en;
+    return map[key] || ((lang === "de" ? "Parameter " : "Param ") + key);
+  }
+
+  function buildParamDescMap(cmd, lang) {
+    var map = {};
+    if (!cmd || !cmd.params || !Array.isArray(cmd.params)) return map;
+    for (var i = 0; i < cmd.params.length; i += 1) {
+      var p = cmd.params[i];
+      if (!p || !p.key) continue;
+      var key = String(p.key).trim().toUpperCase();
+      var desc = textFromLang(p.desc, lang);
+      if (desc) map[key] = desc;
+    }
+    return map;
+  }
+
+  function explainLine(line, lang, commandByCode, commandSet) {
+    var lines = String(line || "").split(/\r?\n/);
+    var sections = [];
+
+    for (var i = 0; i < lines.length; i += 1) {
+      var parsedSections = tokenizeLineSections(lines[i], commandSet);
+      if (parsedSections.length) sections = sections.concat(parsedSections);
+    }
+
+    if (!sections.length) return "<div>No data.</div>";
+
+    var html = "";
+    for (var s = 0; s < sections.length; s += 1) {
+      var tokens = sections[s].tokens;
+      var cmd = tokens[0].v || "";
+      var cmdKey = String(cmd).toUpperCase();
+      var cmdObj = commandByCode ? commandByCode[cmdKey] : null;
+      if (!cmdObj && commandByCode) {
+        var normCmd = normalizeCommandToken(cmdKey);
+        cmdObj = commandByCode[normCmd] || null;
+      }
+      var paramDescMap = buildParamDescMap(cmdObj, lang);
+      var args = tokens.slice(1);
+
+      html += '<div class="gref__exSection">';
+      html += "<div><strong>" + (lang === "de" ? "Zeile" : "Line") + ":</strong> <code>" + escapeHtml(sections[s].line) + "</code></div>";
+      html += '<div class="gref__kv"><div><strong>' + (lang === "de" ? "Befehl" : "Command") + ":</strong> <code>" + escapeHtml(cmd) + "</code></div>";
+
+      if (args.length) {
+        html += '<div style="margin-top:6px;"><strong>' + (lang === "de" ? "Parameter" : "Parameters") + ":</strong></div>";
+        html += '<ul style="margin:6px 0 0 18px;">';
+        for (var j = 0; j < args.length; j += 1) {
+          var a = args[j];
+          var desc = paramDescMap[a.k] || "";
+          var label = desc ? (a.k + " – " + desc) : (a.k + " – " + paramLabel(a.k, lang));
+          var value = a.v === "" ? (lang === "de" ? "gesetzt" : "set") : a.v;
+          html += "<li>" + label + ": <code>" + escapeHtml(value) + "</code></li>";
+        }
+        html += "</ul>";
+      } else {
+        html += '<div style="margin-top:6px;">' + (lang === "de" ? "Keine Parameter." : "No parameters.") + "</div>";
+      }
+
+      html += "</div></div>";
+    }
+    return html;
+  }
+
+  function scrollToId(paneEl, id) {
+    var target = paneEl.querySelector("#" + CSS.escape(id));
+    if (!target) return false;
+    var paneTop = paneEl.getBoundingClientRect().top;
+    var targetTop = target.getBoundingClientRect().top;
+    var offset = targetTop - paneTop + paneEl.scrollTop;
+    paneEl.scrollTo({ top: offset, behavior: "smooth" });
+    return true;
+  }
+
+  function setHash(id) {
+    try { history.replaceState(null, "", "#" + encodeURIComponent(id)); } catch (e) {}
+  }
+
+  // -----------------------
+  // Renderers
+  // -----------------------
+  function renderTocItem(cmd, lang) {
+    var label = textFromLang(cmd.title, lang) || cmd.label || "";
+    // "M109 – Set Hotend Temp & Wait style"
+    return (
+      '<div class="gref__tocItem" role="button" tabindex="0" data-id="' + escapeHtml(cmd.id) + '">' +
+        '<div class="gref__tocCode">' + escapeHtml(cmd.code || cmd.id) + "</div>" +
+        '<div class="gref__tocLabel">' + escapeHtml(label) + "</div>" +
+      "</div>"
+    );
+  }
+
+  function renderBadges(cmd, lang, ui) {
+    if (!cmd.requires || !cmd.requires.length) return "";
+    var title = ui.requires + ":";
+    var out = '<div class="gref__badges" aria-label="' + escapeHtml(title) + '">';
+    for (var i = 0; i < cmd.requires.length; i += 1) {
+      out += '<span class="gref__badge">' + escapeHtml(cmd.requires[i]) + "</span>";
+    }
+    out += "</div>";
+    return out;
+  }
+
+  function renderCard(cmd, lang, ui) {
+    var title = textFromLang(cmd.title, lang) || cmd.label || "";
+    var desc  = textFromLang(cmd.desc, lang) || "";
+    var tag   = title; // keep tag as title; optionally you can use category
+
+    var examples = cmd.examples || [];
+    var linesHtml = "";
+    if (examples.length) {
+      for (var i = 0; i < examples.length; i += 1) {
+        var ex = examples[i];
+        var code = (typeof ex === "string") ? ex : (ex.code || "");
+        if (!code) continue;
+        linesHtml += '<span class="gref__line" data-line="' + escapeHtml(code) + '">' + escapeHtml(code) + "</span>";
+      }
+    }
+
+    return (
+      '<article class="gref__card" id="' + escapeHtml(cmd.id) + '" data-id="' + escapeHtml(cmd.id) + '">' +
+        '<div class="gref__head">' +
+          '<div class="gref__cmd">' + escapeHtml(cmd.code || cmd.id) + "</div>" +
+          '<div class="gref__tag">' + escapeHtml(tag) + "</div>" +
+        "</div>" +
+        (desc ? '<p class="gref__desc">' + escapeHtml(desc) + "</p>" : "") +
+        renderBadges(cmd, lang, ui) +
+        '<div class="gref__codeWrap">' +
+          '<button class="gref__copy" type="button">Copy</button>' +
+          '<pre class="gref__code"><code>' + linesHtml + "</code></pre>" +
+        "</div>" +
+      "</article>"
+    );
+  }
+
+  function applyI18n(root, lang, ui) {
+    // Update text nodes via data-i18n keys
+    var nodes = $all(root, "[data-i18n]");
+    for (var i = 0; i < nodes.length; i += 1) {
+      var key = nodes[i].getAttribute("data-i18n");
+      if (ui[key]) nodes[i].textContent = ui[key];
+    }
+
+    // Placeholder
+    var search = root.querySelector("#gref-search");
+    if (search) search.setAttribute("placeholder", ui.searchPlaceholder);
+
+    // Titles where hardcoded
+    var tocTitle = root.querySelector(".gref__tocTitle");
+    if (tocTitle) tocTitle.textContent = ui.commands;
+
+    var drawerTitle = root.querySelector(".gref__drawerTitle");
+    if (drawerTitle) drawerTitle.textContent = ui.commands;
+  }
+
+  function setLangButtons(root, lang) {
+    var btns = $all(root, ".gref__langBtn");
+    for (var i = 0; i < btns.length; i += 1) {
+      btns[i].classList.toggle("is-active", btns[i].getAttribute("data-lang") === lang);
+    }
+  }
+
+  // -----------------------
+  // Main init
+  // -----------------------
+  function init() {
+    var root = document.getElementById("gref-root");
+    if (!root) return;
+
+    var status = document.getElementById("gref-status");
+
+    var cfg = window.GCodeRefConfig || {};
+    var jsonUrl = cfg.jsonUrl;
+    var fallbackJsonUrl = cfg.fallbackJsonUrl || "";
+    if (!jsonUrl) {
+      if (status) status.textContent = "GCodeRefConfig.jsonUrl missing.";
+      return;
+    }
+
+    // language
+    var defaultLang = (cfg.ui && cfg.ui.defaultLang) ? cfg.ui.defaultLang : "de";
+    var lang = getStoredLang() || defaultLang;
+    if (!I18N[lang]) lang = defaultLang;
+
+    var ui = I18N[lang];
+
+    // elements
+    var pane = root.querySelector(".gref__pane");
+    var resultsWrap = root.querySelector(".gref__resultsWrap");
+    var toc = document.getElementById("gref-toc");
+    var tocMobile = document.getElementById("gref-toc-mobile");
+    var results = document.getElementById("gref-results");
+    var explain = document.getElementById("gref-explain");
+    var search = document.getElementById("gref-search");
+    var clearBtn = root.querySelector(".gref__clear");
+
+    var drawerBtn = root.querySelector(".gref__tocBtn");
+    var drawer = document.getElementById("gref-drawer");
+    var backdrop = document.getElementById("gref-backdrop");
+    var drawerClose = root.querySelector(".gref__drawerClose");
+
+    if (!pane || !resultsWrap || !toc || !results || !explain || !search || !clearBtn) return;
+
+    // Initial UI labels (before JSON load)
+    applyI18n(root, lang, ui);
+    setLangButtons(root, lang);
+    search.setAttribute("placeholder", ui.searchPlaceholder);
+    explain.textContent = ui.explainEmpty;
+
+    // drawer
+    function openDrawer() {
+      if (!drawerBtn || !drawer || !backdrop) return;
+      drawerBtn.setAttribute("aria-expanded", "true");
+      drawer.hidden = false;
+      backdrop.hidden = false;
+      requestAnimationFrame(function () { drawer.classList.add("is-open"); });
+    }
+    function closeDrawer() {
+      if (!drawerBtn || !drawer || !backdrop) return;
+      drawerBtn.setAttribute("aria-expanded", "false");
+      drawer.classList.remove("is-open");
+      setTimeout(function () {
+        drawer.hidden = true;
+        backdrop.hidden = true;
+      }, 200);
+    }
+
+    if (drawerBtn && drawer && backdrop && drawerClose) {
+      drawerBtn.addEventListener("click", function () {
+        var isOpen = drawerBtn.getAttribute("aria-expanded") === "true";
+        if (isOpen) closeDrawer(); else openDrawer();
+      });
+      drawerClose.addEventListener("click", closeDrawer);
+      backdrop.addEventListener("click", closeDrawer);
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && drawerBtn.getAttribute("aria-expanded") === "true") closeDrawer();
+      });
+    }
+
+    // load JSON
+    function fetchJson(url) {
+      return fetch(url, { credentials: "same-origin" }).then(function (res) {
+        if (!res.ok) throw new Error("JSON fetch failed: " + res.status);
+        return res.json();
+      });
+    }
+
+    function fetchJsonWithFallback(primaryUrl, fallbackUrl) {
+      return fetchJson(primaryUrl).catch(function (err) {
+        if (fallbackUrl && fallbackUrl !== primaryUrl) {
+          return fetchJson(fallbackUrl);
+        }
+        throw err;
+      });
+    }
+
+    var commands = [];
+    var commandByCode = {};
+    var commandSet = {};
+    var fuse = null;
+    var activeId = null;
+
+    function rebuildFuse() {
+      if (!window.Fuse || !commands.length) return;
+      fuse = new window.Fuse(commands, {
+        keys: [
+          { name: "id", weight: 0.10 },
+          { name: "code", weight: 0.45 },
+          // Use combined localized title/desc into a searchable string
+          { name: "_search", weight: 0.45 }
+        ],
+        threshold: 0.35,
+        ignoreLocation: true,
+        minMatchCharLength: 2
+      });
+    }
+
+    function computeSearchFields() {
+      // store a language-independent search string (include both de+en if present)
+      for (var i = 0; i < commands.length; i += 1) {
+        var c = commands[i];
+        var t = "";
+        if (c.title) {
+          if (typeof c.title === "string") t += " " + c.title;
+          else t += " " + (c.title.de || "") + " " + (c.title.en || "");
+        }
+        if (c.desc) {
+          if (typeof c.desc === "string") t += " " + c.desc;
+          else t += " " + (c.desc.de || "") + " " + (c.desc.en || "");
+        }
+        if (c.aliases && c.aliases.length) t += " " + c.aliases.join(" ");
+        if (c.category) t += " " + c.category;
+        c._search = t.trim();
+      }
+    }
+
+    function renderAll() {
+      ui = I18N[lang];
+      applyI18n(root, lang, ui);
+      setLangButtons(root, lang);
+
+      toc.innerHTML = commands.map(function (c) { return renderTocItem(c, lang); }).join("");
+      if (tocMobile) tocMobile.innerHTML = toc.innerHTML;
+
+      results.innerHTML = commands.map(function (c) { return renderCard(c, lang, ui); }).join("");
+
+      // set initial active
+      var first = commands[0] ? commands[0].id : null;
+      if (first) {
+        setActive(first, false);
+      }
+
+      // apply current search highlights again after re-render
+      applySearchHighlights(search.value, false);
+    }
+
+    function setActive(id, updateHash) {
+      if (!id) return;
+      activeId = id;
+
+      // TOC active class
+      [toc, tocMobile].forEach(function (r) {
+        if (!r) return;
+        $all(r, ".gref__tocItem.is-active").forEach(function (n) { n.classList.remove("is-active"); });
+        var el = r.querySelector('.gref__tocItem[data-id="' + CSS.escape(id) + '"]');
+        if (el) el.classList.add("is-active");
+      });
+
+      if (updateHash) setHash(id);
+    }
+
+    function setMatchState(matchIds) {
+      var set = new Set(matchIds);
+
+      [toc, tocMobile].forEach(function (r) {
+        if (!r) return;
+        $all(r, ".gref__tocItem").forEach(function (n) {
+          var id = n.getAttribute("data-id");
+          n.classList.toggle("is-match", set.has(id));
+        });
+      });
+
+      $all(results, ".gref__card").forEach(function (n) {
+        var id = n.getAttribute("data-id");
+        n.classList.toggle("is-match", set.has(id));
+      });
+    }
+
+    function bestMatchId(query) {
+      if (!query) return null;
+      if (fuse) {
+        var found = fuse.search(query);
+        return found[0] ? found[0].item.id : null;
+      }
+      // fallback basic
+      var q = query.toLowerCase();
+      for (var i = 0; i < commands.length; i += 1) {
+        var c = commands[i];
+        var hay = (c._search || "").toLowerCase();
+        if (hay.indexOf(q) !== -1) return c.id;
+      }
+      return null;
+    }
+
+    function matchIds(query) {
+      if (!query) return [];
+      if (fuse) {
+        return fuse.search(query).map(function (r) { return r.item.id; });
+      }
+      var q = query.toLowerCase();
+      var out = [];
+      for (var i = 0; i < commands.length; i += 1) {
+        var c = commands[i];
+        if ((c._search || "").toLowerCase().indexOf(q) !== -1) out.push(c.id);
+      }
+      return out;
+    }
+
+    function applySearchHighlights(query, allowJump) {
+      var q = normalizeQuery(query);
+      if (!q) { setMatchState([]); return; }
+
+      var ids = matchIds(q);
+      setMatchState(ids);
+
+      if (!allowJump) return;
+
+      var best = ids.length ? ids[0] : bestMatchId(q);
+      if (best) {
+        scrollToId(resultsWrap, best);
+        setActive(best, true);
+      }
+    }
+
+    function buildCommandIndex() {
+      commandByCode = {};
+      commandSet = {};
+      for (var i = 0; i < commands.length; i += 1) {
+        var c = commands[i];
+        if (c && c.code) {
+          var code = String(c.code).toUpperCase();
+          var norm = normalizeCommandToken(code);
+          commandByCode[code] = c;
+          commandByCode[norm] = c;
+          commandSet[code] = true;
+          commandSet[norm] = true;
+        }
+      }
+    }
+
+    var applySearchDebounced = debounce(function () {
+      applySearchHighlights(search.value, false);
+      clearBtn.style.visibility = normalizeQuery(search.value) ? "visible" : "hidden";
+    }, 100);
+
+    // TOC click + keyboard
+    function jumpToFromEvent(e) {
+      var item = e.target.closest(".gref__tocItem");
+      if (!item) return;
+      var id = item.getAttribute("data-id");
+      if (id) {
+        scrollToId(resultsWrap, id);
+        setActive(id, true);
+        if (drawerBtn && drawerBtn.getAttribute("aria-expanded") === "true") closeDrawer();
+      }
+    }
+    toc.addEventListener("click", jumpToFromEvent);
+    if (tocMobile) tocMobile.addEventListener("click", jumpToFromEvent);
+
+    toc.addEventListener("keydown", function (e) {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      var item = e.target.closest(".gref__tocItem");
+      if (!item) return;
+      e.preventDefault();
+      var id = item.getAttribute("data-id");
+      if (id) {
+        scrollToId(resultsWrap, id);
+        setActive(id, true);
+      }
+    });
+
+    // Results click: copy + explain
+    results.addEventListener("click", function (e) {
+      var copyBtn = e.target.closest(".gref__copy");
+      if (copyBtn) {
+        var card = copyBtn.closest(".gref__card");
+        var codeEl = card ? card.querySelector("pre.gref__code code") : null;
+        var text = codeEl ? codeEl.innerText.replace(/\n{2,}/g, "\n") : "";
+
+        var feedback = function () {
+          var old = copyBtn.textContent;
+          copyBtn.textContent = "Copied ✓";
+          setTimeout(function () { copyBtn.textContent = old; }, 900);
+        };
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(feedback).catch(function () {
+            var ta = document.createElement("textarea");
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand("copy");
+            ta.remove();
+            feedback();
+          });
+        } else {
+          var ta2 = document.createElement("textarea");
+          ta2.value = text;
+          document.body.appendChild(ta2);
+          ta2.select();
+          document.execCommand("copy");
+          ta2.remove();
+          feedback();
+        }
+        return;
+      }
+
+      var lineEl = e.target.closest(".gref__line");
+      if (lineEl) {
+        $all(results, ".gref__line--active").forEach(function (n) { n.classList.remove("gref__line--active"); });
+        lineEl.classList.add("gref__line--active");
+        explain.innerHTML = explainLine(lineEl.getAttribute("data-line") || "", lang, commandByCode, commandSet);
+      }
+    });
+
+    // Search
+    search.addEventListener("input", applySearchDebounced);
+    search.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        applySearchHighlights(search.value, true);
+      }
+    });
+
+    clearBtn.addEventListener("click", function () {
+      search.value = "";
+      clearBtn.style.visibility = "hidden";
+      setMatchState([]);
+      explain.textContent = I18N[lang].explainEmpty;
+      search.focus();
+    });
+    clearBtn.style.visibility = "hidden";
+
+    // Language toggle
+    $all(root, ".gref__langBtn").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var next = btn.getAttribute("data-lang");
+        if (!next || !I18N[next]) return;
+        lang = next;
+        setStoredLang(lang);
+        // rerender UI + toc + cards with fallback behavior
+        renderAll();
+      });
+    });
+
+    // Active sync (IntersectionObserver)
+    function setupObserver() {
+      if (!("IntersectionObserver" in window)) return;
+
+      var cards = $all(results, ".gref__card");
+      if (!cards.length) return;
+
+      var io = new IntersectionObserver(function (entries) {
+        var visible = entries
+          .filter(function (en) { return en.isIntersecting; })
+          .sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
+
+        if (visible.length) {
+          var id = visible[0].target.getAttribute("data-id");
+          if (id && id !== activeId) setActive(id, true);
+        }
+      }, { root: resultsWrap, threshold: [0.15, 0.3, 0.6] });
+
+      for (var i = 0; i < cards.length; i += 1) io.observe(cards[i]);
+    }
+
+    // Load JSON and boot
+    if (status) status.textContent = "";
+
+    fetchJsonWithFallback(jsonUrl, fallbackJsonUrl).then(function (payload) {
+      if (!payload || !payload.commands || !Array.isArray(payload.commands)) {
+        throw new Error("Invalid JSON schema. Expected { meta, commands: [] }");
+      }
+
+      commands = payload.commands.slice();
+
+      // Normalize required fields and prevent crashes
+      commands = commands.filter(function (c) { return c && c.id && c.code; });
+
+      // Precompute search strings (both langs + aliases)
+      computeSearchFields();
+
+      // Build Fuse index
+      rebuildFuse();
+
+      // Build command index for parameter descriptions
+      buildCommandIndex();
+
+      // Apply UI translations
+      applyI18n(root, lang, ui);
+      setLangButtons(root, lang);
+
+      // Initial placeholder + labels
+      search.setAttribute("placeholder", ui.searchPlaceholder);
+      explain.textContent = ui.explainEmpty;
+
+      // Render
+      renderAll();
+      setupObserver();
+
+      // Hash jump on load
+      var hash = decodeURIComponent((location.hash || "").replace(/^#/, ""));
+      if (hash) {
+        // highlight + jump if exists
+        var ok = scrollToId(resultsWrap, hash);
+        if (ok) {
+          setActive(hash, true);
+          setMatchState([hash]);
+        }
+      }
+
+    }).catch(function (err) {
+      if (status) {
+        var tried = fallbackJsonUrl && fallbackJsonUrl !== jsonUrl ? (jsonUrl + " | " + fallbackJsonUrl) : jsonUrl;
+        status.textContent = "Failed to load JSON from: " + tried + ". " + (err && err.message ? err.message : String(err));
+      }
+      // show minimal feedback in results pane
+      results.innerHTML = '<div class="gref__empty">Failed to load commands.json.</div>';
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
