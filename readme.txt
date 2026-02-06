@@ -4,7 +4,7 @@ Tags: gcode, 3d-printing, marlin, reference, documentation
 Requires at least: 5.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 2.0.5
+Stable tag: 2.0.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -93,6 +93,11 @@ This happens when an old version is still active. Solution:
 5. Language switcher (DE/EN)
 
 == Changelog ==
+
+= 2.0.6 - 2026-02-06 =
+* **Hotfix**: Reverted aggressive JS minification that caused syntax errors
+* **Fixed**: "Unexpected end of input" error in app.min.js
+* **Improved**: Full HD layout optimizations (CSS) are preserved
 
 = 2.0.5 - 2026-02-06 =
 * **Fixed**: Language bug - regenerated minified JS to respect defaultLang setting

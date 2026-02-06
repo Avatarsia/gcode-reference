@@ -3,7 +3,7 @@
 /**
  * Plugin Name: G-code Reference (JSON)
  * Description: Interactive G-code reference with split TOC, search, copy, explain. JSON-driven. DE/EN UI toggle.
- * Version: 2.0.5
+ * Version: 2.0.6
  */
 
 if (!defined('ABSPATH')) exit;
@@ -57,7 +57,7 @@ class GCode_Reference_JSON
     $base = plugin_dir_url(__FILE__);
 
     // Use timestamp for cache busting to prevent old cached versions
-    $version = '2.0.5-' . filemtime(__DIR__ . '/assets/app.min.css');
+    $version = '2.0.6-' . filemtime(__DIR__ . '/assets/app.min.css');
 
     // Use minified assets in production, original in development
     $suffix = (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG) ? '' : '.min';
