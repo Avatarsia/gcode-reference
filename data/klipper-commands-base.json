@@ -1,0 +1,14 @@
+{
+  "meta": {
+    "id": "klipper",
+    "title": {
+      "de": "Klipper G-code",
+      "en": "Klipper G-code"
+    },
+    "defaultLanguage": "de",
+    "source": "https://www.klipper3d.org/G-Codes.html",
+    "version": "v0.12.0+",
+    "updated": "2026-02-06"
+  },
+  "commands": []
+}

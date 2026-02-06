@@ -1,0 +1,75 @@
+{
+    "extends": "wordpress",
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 2021,
+        "sourceType": "script"
+    },
+    "globals": {
+        "gcodeReferenceConfig": "readonly",
+        "Fuse": "readonly"
+    },
+    "rules": {
+        "no-console": "warn",
+        "no-unused-vars": [
+            "error",
+            {
+                "argsIgnorePattern": "^_"
+            }
+        ],
+        "prefer-const": "error",
+        "no-var": "error",
+        "eqeqeq": [
+            "error",
+            "always"
+        ],
+        "curly": [
+            "error",
+            "all"
+        ],
+        "brace-style": [
+            "error",
+            "1tbs"
+        ],
+        "indent": [
+            "error",
+            2
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "comma-dangle": [
+            "error",
+            "always-multiline"
+        ],
+        "space-before-function-paren": [
+            "error",
+            {
+                "anonymous": "always",
+                "named": "never",
+                "asyncArrow": "always"
+            }
+        ],
+        "jsdoc/require-jsdoc": [
+            "warn",
+            {
+                "require": {
+                    "FunctionDeclaration": true,
+                    "MethodDefinition": true,
+                    "ClassDeclaration": true
+                }
+            }
+        ]
+    },
+    "plugins": [
+        "jsdoc"
+    ]
+}

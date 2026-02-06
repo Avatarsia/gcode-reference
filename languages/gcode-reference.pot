@@ -1,0 +1,70 @@
+# G-Code Reference Translation Template
+# Copyright (C) 2026
+
+msgid ""
+msgstr ""
+"Project-Id-Version: G-code Reference 2.0.0\n"
+"POT-Creation-Date: 2026-02-06 00:00+0000\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+
+msgid "Settings"
+msgstr ""
+
+msgid "commands.json not found"
+msgstr ""
+
+msgid "Failed to read commands.json"
+msgstr ""
+
+msgid "Invalid JSON: %s"
+msgstr ""
+
+msgid "G-code Reference"
+msgstr ""
+
+msgid "Forbidden"
+msgstr ""
+
+msgid "Invalid JSON: "
+msgstr ""
+
+msgid "Schema error: expected { meta: {...}, commands: [...] }"
+msgstr ""
+
+msgid "Error:"
+msgstr ""
+
+msgid "JSON uploaded successfully."
+msgstr ""
+
+msgid "Settings saved."
+msgstr ""
+
+msgid "Data source"
+msgstr ""
+
+msgid "Default JSON is bundled in the plugin. Optionally upload an override JSON (saved in uploads)."
+msgstr ""
+
+msgid "Use uploaded JSON override"
+msgstr ""
+
+msgid "Uploaded JSON URL:"
+msgstr ""
+
+msgid "none"
+msgstr ""
+
+msgid "Save source settings"
+msgstr ""
+
+msgid "Upload JSON"
+msgstr ""
+
+msgid "Upload and validate"
+msgstr ""
+
+

@@ -1,0 +1,145 @@
+# G-Code Reference Translation Template
+# Copyright (C) 2026
+
+msgid ""
+msgstr ""
+"Project-Id-Version: G-code Reference (JSON) 2.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/gcode-reference\n"
+"POT-Creation-Date: 2026-02-05 23:00:00+0000\n"
+"PO-Revision-Date: 2026-02-06 00:45:00+0100\n"
+"Last-Translator: 3D Partner\n"
+"Language-Team: German\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: gcode-reference.php:92
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: gcode-reference.php:190
+msgid "commands.json not found"
+msgstr "commands.json nicht gefunden"
+
+#: gcode-reference.php:204
+msgid "Failed to read commands.json"
+msgstr "Fehler beim Lesen von commands.json"
+
+#: gcode-reference.php:209
+msgid "Invalid JSON: %s"
+msgstr "Ungültige JSON: %s"
+
+msgid "G-code Reference"
+msgstr ""
+
+msgid "Forbidden"
+msgstr ""
+
+msgid "Invalid JSON: "
+msgstr ""
+
+msgid "Schema error: expected { meta: {...}, commands: [...] }"
+msgstr ""
+
+msgid "Error:"
+msgstr ""
+
+msgid "JSON uploaded successfully."
+msgstr ""
+
+msgid "Settings saved."
+msgstr ""
+
+msgid "Data source"
+msgstr ""
+
+msgid "Default JSON is bundled in the plugin. Optionally upload an override JSON (saved in uploads)."
+msgstr ""
+
+msgid "Use uploaded JSON override"
+msgstr ""
+
+msgid "Uploaded JSON URL:"
+msgstr ""
+
+msgid "none"
+msgstr ""
+
+msgid "Save source settings"
+msgstr ""
+
+msgid "Upload JSON"
+msgstr "JSON hochladen"
+
+msgid "Upload and validate"
+msgstr ""
+
+#: admin/settings.php:19
+msgid "G-Code Reference Settings"
+msgstr "G-Code Referenz Einstellungen"
+
+#: admin/settings.php:75
+msgid "JSON File Options"
+msgstr "JSON-Datei Optionen"
+
+#: admin/settings.php:79
+msgid "Use Default JSON"
+msgstr "Standard-JSON verwenden"
+
+#: admin/settings.php:181
+msgid "Use Uploaded JSON"
+msgstr "Hochgeladene JSON verwenden"
+
+#: admin/settings.php:186
+msgid "Upload Custom JSON"
+msgstr "Eigene JSON hochladen"
+
+#: admin/settings.php:193
+msgid "No uploaded file exists."
+msgstr "Keine hochgeladene Datei vorhanden."
+
+#: admin/settings.php:197
+msgid "Delete Uploaded JSON"
+msgstr "Hochgeladene JSON löschen"
+
+#: admin/settings.php:201
+msgid "Save Changes"
+msgstr "Änderungen speichern"
+
+#: admin/settings.php:203
+msgid "Upload JSON"
+msgstr "JSON hochladen"
+
+#: admin/settings.php:211
+msgid "Delete JSON"
+msgstr "JSON löschen"
+
+#: admin/settings.php:214
+msgid "Are you sure?"
+msgstr "Sind Sie sicher?"
+
+#: admin/settings.php:216
+msgid "Upload"
+msgstr "Hochladen"
+
+#: admin/settings.php:99
+msgid "Unauthorized"
+msgstr "Keine Berechtigung"
+
+#: admin/settings.php:138
+msgid "File uploaded successfully."
+msgstr "Datei erfolgreich hochgeladen."
+
+#: admin/settings.php:144
+msgid "Upload failed."
+msgstr "Upload fehlgeschlagen."
+
+#: admin/settings.php:158
+msgid "File deleted successfully."
+msgstr "Datei erfolgreich gelöscht."
+
+#: admin/settings.php:166
+msgid "Delete failed."
+msgstr "Löschen fehlgeschlagen."

@@ -1,0 +1,32 @@
+{
+    "name": "gcode-reference",
+    "version": "2.0.0",
+    "description": "G-code reference plugin for WordPress",
+    "scripts": {
+        "build:css": "cleancss -o assets/app.min.css assets/app.css",
+        "build:js": "terser assets/app.js -o assets/app.min.js --compress --mangle --comments false",
+        "build": "npm run build:css && npm run build:js",
+        "lint:php": "phpcs --standard=WordPress gcode-reference.php admin/",
+        "lint:js": "eslint assets/app.js",
+        "lint": "npm run lint:php && npm run lint:js",
+        "format:php": "phpcbf --standard=WordPress gcode-reference.php admin/",
+        "format:js": "eslint --fix assets/app.js",
+        "deploy": "npm run build && npm run lint"
+    },
+    "devDependencies": {
+        "clean-css-cli": "^5.6.3",
+        "eslint": "^8.57.0",
+        "eslint-config-wordpress": "^2.0.0",
+        "eslint-plugin-jsdoc": "^48.0.0",
+        "terser": "^5.46.0"
+    },
+    "keywords": [
+        "gcode",
+        "marlin",
+        "klipper",
+        "3d-printing",
+        "wordpress"
+    ],
+    "author": "3D Partner",
+    "license": "GPL-2.0-or-later"
+}

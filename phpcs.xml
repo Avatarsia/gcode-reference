@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<ruleset name="G-code Reference">
+  <description>WordPress Coding Standards for G-code Reference Plugin</description>
+
+  <!-- Check PHP files only -->
+  <arg name="extensions" value="php"/>
+  
+  <!-- Show colors in output -->
+  <arg name="colors"/>
+  
+  <!-- Show sniff codes in output -->
+  <arg value="ps"/>
+
+  <!-- Use WordPress Coding Standards -->
+  <rule ref="WordPress">
+    <!-- Allow short array syntax -->
+    <exclude name="Generic.Arrays.DisallowShortArraySyntax"/>
+    
+    <!-- Allow class file names (we use GCode_Reference_JSON) -->
+    <exclude name="WordPress.Files.FileName"/>
+    
+    <!-- We have our own translation domain -->
+    <exclude name="WordPress.WP.I18n.MissingArgDomain"/>
+  </rule>
+
+  <!-- Check for PHP cross-version compatibility -->
+  <config name="testVersion" value="7.4-"/>
+  
+  <!-- Text domain check -->
+  <rule ref="WordPress.WP.I18n">
+    <properties>
+      <property name="text_domain" type="array">
+        <element value="gcode-reference"/>
+      </property>
+    </properties>
+  </rule>
+
+  <!-- Exclude vendor and node_modules -->
+  <exclude-pattern>*/vendor/*</exclude-pattern>
+  <exclude-pattern>*/node_modules/*</exclude-pattern>
+  <exclude-pattern>*/assets/fuse.min.js</exclude-pattern>
+</ruleset>

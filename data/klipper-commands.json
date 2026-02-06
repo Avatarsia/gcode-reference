@@ -1,0 +1,1366 @@
+{
+  "meta": {
+    "id": "klipper",
+    "title": {
+      "de": "Klipper G-code",
+      "en": "Klipper G-code"
+    },
+    "defaultLanguage": "de",
+    "source": "https://www.klipper3d.org/G-Codes.html",
+    "version": "v0.12.0+",
+    "updated": "2026-02-06"
+  },
+  "commands": [
+    {
+      "id": "G0",
+      "code": "G0",
+      "title": {
+        "de": "Lineare Bewegung",
+        "en": "Linear Move"
+      },
+      "desc": {
+        "de": "Führt eine lineare Bewegung durch. In Klipper sind G0 und G1 identisch.",
+        "en": "Executes a linear move. G0 and G1 are identical in Klipper."
+      },
+      "category": "movement",
+      "aliases": [
+        "g0",
+        "g1"
+      ],
+      "params": [
+        {
+          "key": "X",
+          "type": "number",
+          "desc": {
+            "de": "X-Achsen-Position",
+            "en": "X axis position"
+          }
+        },
+        {
+          "key": "Y",
+          "type": "number",
+          "desc": {
+            "de": "Y-Achsen-Position",
+            "en": "Y axis position"
+          }
+        },
+        {
+          "key": "Z",
+          "type": "number",
+          "desc": {
+            "de": "Z-Achsen-Position",
+            "en": "Z axis position"
+          }
+        },
+        {
+          "key": "E",
+          "type": "number",
+          "desc": {
+            "de": "Extruder-Position",
+            "en": "Extruder position"
+          }
+        },
+        {
+          "key": "F",
+          "type": "number",
+          "desc": {
+            "de": "Vorschubgeschwindigkeit (mm/min)",
+            "en": "Feedrate (mm/min)"
+          }
+        }
+      ],
+      "usage": "G0 X100 Y50 F3000"
+    },
+    {
+      "id": "G1",
+      "code": "G1",
+      "title": {
+        "de": "Lineare Bewegung",
+        "en": "Linear Move"
+      },
+      "desc": {
+        "de": "Führt eine lineare Bewegung durch. In Klipper sind G0 und G1 identisch.",
+        "en": "Executes a linear move. G0 and G1 are identical in Klipper."
+      },
+      "category": "movement",
+      "aliases": [
+        "g1",
+        "g0"
+      ],
+      "params": [
+        {
+          "key": "X",
+          "type": "number",
+          "desc": {
+            "de": "X-Achsen-Position",
+            "en": "X axis position"
+          }
+        },
+        {
+          "key": "Y",
+          "type": "number",
+          "desc": {
+            "de": "Y-Achsen-Position",
+            "en": "Y axis position"
+          }
+        },
+        {
+          "key": "Z",
+          "type": "number",
+          "desc": {
+            "de": "Z-Achsen-Position",
+            "en": "Z axis position"
+          }
+        },
+        {
+          "key": "E",
+          "type": "number",
+          "desc": {
+            "de": "Extruder-Position",
+            "en": "Extruder position"
+          }
+        },
+        {
+          "key": "F",
+          "type": "number",
+          "desc": {
+            "de": "Vorschubgeschwindigkeit (mm/min)",
+            "en": "Feedrate (mm/min)"
+          }
+        }
+      ],
+      "usage": "G1 X100 Y50 E5 F1500"
+    },
+    {
+      "id": "G4",
+      "code": "G4",
+      "title": {
+        "de": "Pause",
+        "en": "Dwell"
+      },
+      "desc": {
+        "de": "Pausiert alle Bewegungen für die angegebene Zeit.",
+        "en": "Pauses all movement for the specified duration."
+      },
+      "category": "movement",
+      "aliases": [
+        "g4"
+      ],
+      "params": [
+        {
+          "key": "P",
+          "type": "number",
+          "desc": {
+            "de": "Zeit in Millisekunden",
+            "en": "Time in milliseconds"
+          }
+        }
+      ],
+      "usage": "G4 P1000"
+    },
+    {
+      "id": "G28",
+      "code": "G28",
+      "title": {
+        "de": "Achsen homen",
+        "en": "Home Axes"
+      },
+      "desc": {
+        "de": "Fährt die angegebenen Achsen an ihre Nullposition. Ohne Parameter werden alle Achsen gehomed.",
+        "en": "Homes the specified axes. Without parameters, all axes are homed."
+      },
+      "category": "movement",
+      "aliases": [
+        "g28"
+      ],
+      "params": [
+        {
+          "key": "X",
+          "type": "flag",
+          "desc": {
+            "de": "X-Achse homen",
+            "en": "Home X axis"
+          }
+        },
+        {
+          "key": "Y",
+          "type": "flag",
+          "desc": {
+            "de": "Y-Achse homen",
+            "en": "Home Y axis"
+          }
+        },
+        {
+          "key": "Z",
+          "type": "flag",
+          "desc": {
+            "de": "Z-Achse homen",
+            "en": "Home Z axis"
+          }
+        }
+      ],
+      "usage": "G28\nG28 X Y\nG28 Z"
+    },
+    {
+      "id": "G90",
+      "code": "G90",
+      "title": {
+        "de": "Absoluter Positionierungsmodus",
+        "en": "Absolute Positioning"
+      },
+      "desc": {
+        "de": "Schaltet auf absolute Koordinaten um.",
+        "en": "Switch to absolute positioning mode."
+      },
+      "category": "settings",
+      "aliases": [
+        "g90"
+      ],
+      "params": [],
+      "usage": "G90"
+    },
+    {
+      "id": "G91",
+      "code": "G91",
+      "title": {
+        "de": "Relativer Positionierungsmodus",
+        "en": "Relative Positioning"
+      },
+      "desc": {
+        "de": "Schaltet auf relative Koordinaten um.",
+        "en": "Switch to relative positioning mode."
+      },
+      "category": "settings",
+      "aliases": [
+        "g91"
+      ],
+      "params": [],
+      "usage": "G91"
+    },
+    {
+      "id": "G92",
+      "code": "G92",
+      "title": {
+        "de": "Position setzen",
+        "en": "Set Position"
+      },
+      "desc": {
+        "de": "Setzt die aktuelle Position auf die angegebenen Koordinaten, ohne sich zu bewegen.",
+        "en": "Sets the current position to specified coordinates without moving."
+      },
+      "category": "settings",
+      "aliases": [
+        "g92"
+      ],
+      "params": [
+        {
+          "key": "X",
+          "type": "number",
+          "desc": {
+            "de": "Neue X-Position",
+            "en": "New X position"
+          }
+        },
+        {
+          "key": "Y",
+          "type": "number",
+          "desc": {
+            "de": "Neue Y-Position",
+            "en": "New Y position"
+          }
+        },
+        {
+          "key": "Z",
+          "type": "number",
+          "desc": {
+            "de": "Neue Z-Position",
+            "en": "New Z position"
+          }
+        },
+        {
+          "key": "E",
+          "type": "number",
+          "desc": {
+            "de": "Neue E-Position",
+            "en": "New E position"
+          }
+        }
+      ],
+      "usage": "G92 E0\nG92 Z0"
+    },
+    {
+      "id": "M18",
+      "code": "M18",
+      "title": {
+        "de": "Motoren ausschalten",
+        "en": "Disable Motors"
+      },
+      "desc": {
+        "de": "Schaltet alle Schrittmotoren aus.",
+        "en": "Disables all stepper motors."
+      },
+      "category": "motor_control",
+      "aliases": [
+        "m18",
+        "m84"
+      ],
+      "params": [],
+      "usage": "M18"
+    },
+    {
+      "id": "M82",
+      "code": "M82",
+      "title": {
+        "de": "Absoluter Extruder-Modus",
+        "en": "Absolute Extrusion Mode"
+      },
+      "desc": {
+        "de": "Schaltet Extruder auf absolute Koordinaten um.",
+        "en": "Sets extruder to absolute positioning mode."
+      },
+      "category": "extruder",
+      "aliases": [
+        "m82"
+      ],
+      "params": [],
+      "usage": "M82"
+    },
+    {
+      "id": "M83",
+      "code": "M83",
+      "title": {
+        "de": "Relativer Extruder-Modus",
+        "en": "Relative Extrusion Mode"
+      },
+      "desc": {
+        "de": "Schaltet Extruder auf relative Koordinaten um.",
+        "en": "Sets extruder to relative positioning mode."
+      },
+      "category": "extruder",
+      "aliases": [
+        "m83"
+      ],
+      "params": [],
+      "usage": "M83"
+    },
+    {
+      "id": "M84",
+      "code": "M84",
+      "title": {
+        "de": "Motoren ausschalten",
+        "en": "Disable Motors"
+      },
+      "desc": {
+        "de": "Schaltet alle Schrittmotoren aus. Identisch mit M18.",
+        "en": "Disables all stepper motors. Identical to M18."
+      },
+      "category": "motor_control",
+      "aliases": [
+        "m84",
+        "m18"
+      ],
+      "params": [],
+      "usage": "M84"
+    },
+    {
+      "id": "M104",
+      "code": "M104",
+      "title": {
+        "de": "Hotend-Temperatur setzen",
+        "en": "Set Hotend Temperature"
+      },
+      "desc": {
+        "de": "Setzt die Zieltemperatur des Hotends, wartet aber nicht.",
+        "en": "Sets hotend target temperature without waiting."
+      },
+      "category": "temperature",
+      "aliases": [
+        "m104"
+      ],
+      "params": [
+        {
+          "key": "T",
+          "type": "number",
+          "desc": {
+            "de": "Extruder-Index",
+            "en": "Extruder index"
+          }
+        },
+        {
+          "key": "S",
+          "type": "number",
+          "desc": {
+            "de": "Zieltemperatur (°C)",
+            "en": "Target temperature (°C)"
+          }
+        }
+      ],
+      "usage": "M104 S200\nM104 T0 S210"
+    },
+    {
+      "id": "M105",
+      "code": "M105",
+      "title": {
+        "de": "Temperatur abfragen",
+        "en": "Get Temperature"
+      },
+      "desc": {
+        "de": "Gibt die aktuellen Temperaturen aller Heizer aus.",
+        "en": "Reports current temperatures of all heaters."
+      },
+      "category": "temperature",
+      "aliases": [
+        "m105"
+      ],
+      "params": [],
+      "usage": "M105"
+    },
+    {
+      "id": "M106",
+      "code": "M106",
+      "title": {
+        "de": "Lüfter einschalten",
+        "en": "Set Fan Speed"
+      },
+      "desc": {
+        "de": "Setzt die Lüftergeschwindigkeit.",
+        "en": "Sets the fan speed."
+      },
+      "category": "fan",
+      "aliases": [
+        "m106"
+      ],
+      "params": [
+        {
+          "key": "S",
+          "type": "number",
+          "desc": {
+            "de": "Geschwindigkeit (0-255)",
+            "en": "Speed (0-255)"
+          }
+        }
+      ],
+      "usage": "M106 S255\nM106 S128"
+    },
+    {
+      "id": "M107",
+      "code": "M107",
+      "title": {
+        "de": "Lüfter ausschalten",
+        "en": "Turn Fan Off"
+      },
+      "desc": {
+        "de": "Schaltet den Lüfter aus.",
+        "en": "Turns the fan off."
+      },
+      "category": "fan",
+      "aliases": [
+        "m107"
+      ],
+      "params": [],
+      "usage": "M107"
+    },
+    {
+      "id": "M109",
+      "code": "M109",
+      "title": {
+        "de": "Hotend-Temperatur setzen und warten",
+        "en": "Set Hotend Temperature and Wait"
+      },
+      "desc": {
+        "de": "Setzt die Zieltemperatur des Hotends und wartet bis sie erreicht ist.",
+        "en": "Sets hotend target temperature and waits until reached."
+      },
+      "category": "temperature",
+      "aliases": [
+        "m109"
+      ],
+      "params": [
+        {
+          "key": "T",
+          "type": "number",
+          "desc": {
+            "de": "Extruder-Index",
+            "en": "Extruder index"
+          }
+        },
+        {
+          "key": "S",
+          "type": "number",
+          "desc": {
+            "de": "Zieltemperatur (°C)",
+            "en": "Target temperature (°C)"
+          }
+        }
+      ],
+      "usage": "M109 S210"
+    },
+    {
+      "id": "M112",
+      "code": "M112",
+      "title": {
+        "de": "Not-Aus",
+        "en": "Emergency Stop"
+      },
+      "desc": {
+        "de": "Sofortiger Not-Stopp. Beendet alle Operationen unverzüglich.",
+        "en": "Immediate emergency stop. Terminates all operations immediately."
+      },
+      "category": "control",
+      "aliases": [
+        "m112"
+      ],
+      "params": [],
+      "usage": "M112"
+    },
+    {
+      "id": "M114",
+      "code": "M114",
+      "title": {
+        "de": "Position abfragen",
+        "en": "Get Current Position"
+      },
+      "desc": {
+        "de": "Gibt die aktuelle Position aller Achsen aus.",
+        "en": "Reports the current position of all axes."
+      },
+      "category": "query",
+      "aliases": [
+        "m114"
+      ],
+      "params": [],
+      "usage": "M114"
+    },
+    {
+      "id": "M115",
+      "code": "M115",
+      "title": {
+        "de": "Firmware-Version abfragen",
+        "en": "Get Firmware Version"
+      },
+      "desc": {
+        "de": "Gibt die Klipper-Firmware-Version aus.",
+        "en": "Reports the Klipper firmware version."
+      },
+      "category": "query",
+      "aliases": [
+        "m115"
+      ],
+      "params": [],
+      "usage": "M115"
+    },
+    {
+      "id": "M140",
+      "code": "M140",
+      "title": {
+        "de": "Bett-Temperatur setzen",
+        "en": "Set Bed Temperature"
+      },
+      "desc": {
+        "de": "Setzt die Zieltemperatur des Heizbetts, wartet aber nicht.",
+        "en": "Sets bed target temperature without waiting."
+      },
+      "category": "temperature",
+      "aliases": [
+        "m140"
+      ],
+      "params": [
+        {
+          "key": "S",
+          "type": "number",
+          "desc": {
+            "de": "Zieltemperatur (°C)",
+            "en": "Target temperature (°C)"
+          }
+        }
+      ],
+      "usage": "M140 S60"
+    },
+    {
+      "id": "M190",
+      "code": "M190",
+      "title": {
+        "de": "Bett-Temperatur setzen und warten",
+        "en": "Set Bed Temperature and Wait"
+      },
+      "desc": {
+        "de": "Setzt die Zieltemperatur des Heizbetts und wartet bis sie erreicht ist.",
+        "en": "Sets bed target temperature and waits until reached."
+      },
+      "category": "temperature",
+      "aliases": [
+        "m190"
+      ],
+      "params": [
+        {
+          "key": "S",
+          "type": "number",
+          "desc": {
+            "de": "Zieltemperatur (°C)",
+            "en": "Target temperature (°C)"
+          }
+        }
+      ],
+      "usage": "M190 S60"
+    },
+    {
+      "id": "M204",
+      "code": "M204",
+      "title": {
+        "de": "Beschleunigung setzen",
+        "en": "Set Acceleration"
+      },
+      "desc": {
+        "de": "Setzt die Beschleunigungswerte.",
+        "en": "Sets acceleration values."
+      },
+      "category": "settings",
+      "aliases": [
+        "m204"
+      ],
+      "params": [
+        {
+          "key": "S",
+          "type": "number",
+          "desc": {
+            "de": "Beschleunigung (mm/s²)",
+            "en": "Acceleration (mm/s²)"
+          }
+        },
+        {
+          "key": "P",
+          "type": "number",
+          "desc": {
+            "de": "Druck-Beschleunigung",
+            "en": "Print acceleration"
+          }
+        },
+        {
+          "key": "T",
+          "type": "number",
+          "desc": {
+            "de": "Verfahrbeschleunigung",
+            "en": "Travel acceleration"
+          }
+        }
+      ],
+      "usage": "M204 S3000"
+    },
+    {
+      "id": "M220",
+      "code": "M220",
+      "title": {
+        "de": "Geschwindigkeit überschreiben",
+        "en": "Set Speed Factor Override"
+      },
+      "desc": {
+        "de": "Setzt einen Geschwindigkeitsfaktor in Prozent.",
+        "en": "Sets a speed factor override in percent."
+      },
+      "category": "settings",
+      "aliases": [
+        "m220"
+      ],
+      "params": [
+        {
+          "key": "S",
+          "type": "number",
+          "desc": {
+            "de": "Prozentsatz (100=normal)",
+            "en": "Percentage (100=normal)"
+          }
+        }
+      ],
+      "usage": "M220 S50\nM220 S150"
+    },
+    {
+      "id": "M221",
+      "code": "M221",
+      "title": {
+        "de": "Extrusion überschreiben",
+        "en": "Set Extrusion Factor Override"
+      },
+      "desc": {
+        "de": "Setzt einen Extrusionsfaktor in Prozent (Flow).",
+        "en": "Sets an extrusion factor override in percent (flow rate)."
+      },
+      "category": "settings",
+      "aliases": [
+        "m221"
+      ],
+      "params": [
+        {
+          "key": "S",
+          "type": "number",
+          "desc": {
+            "de": "Prozentsatz (100=normal)",
+            "en": "Percentage (100=normal)"
+          }
+        }
+      ],
+      "usage": "M221 S95\nM221 S105"
+    },
+    {
+      "id": "M400",
+      "code": "M400",
+      "title": {
+        "de": "Auf Bewegungsabschluss warten",
+        "en": "Wait for Moves to Finish"
+      },
+      "desc": {
+        "de": "Wartet bis alle ausstehenden Bewegungen abgeschlossen sind.",
+        "en": "Waits for all pending moves to complete."
+      },
+      "category": "control",
+      "aliases": [
+        "m400"
+      ],
+      "params": [],
+      "usage": "M400"
+    },
+    {
+      "id": "BED_MESH_CALIBRATE",
+      "code": "BED_MESH_CALIBRATE",
+      "title": {
+        "de": "Bett vermessen",
+        "en": "Calibrate Bed Mesh"
+      },
+      "desc": {
+        "de": "Vermisst das Druckbett und erstellt ein Kompensations-Mesh für unebene Oberflächen.",
+        "en": "Probes the bed and creates a compensation mesh for uneven surfaces."
+      },
+      "category": "bed_leveling",
+      "aliases": [],
+      "params": [
+        {
+          "key": "PROFILE",
+          "type": "string",
+          "desc": {
+            "de": "Profilname (default='default')",
+            "en": "Profile name (default='default')"
+          }
+        },
+        {
+          "key": "METHOD",
+          "type": "string",
+          "desc": {
+            "de": "'manual' oder 'automatic'",
+            "en": "'manual' or 'automatic'"
+          }
+        },
+        {
+          "key": "ADAPTIVE",
+          "type": "number",
+          "desc": {
+            "de": "1 für adaptives Mesh",
+            "en": "1 for adaptive mesh"
+          }
+        }
+      ],
+      "usage": "BED_MESH_CALIBRATE\nBED_MESH_CALIBRATE PROFILE=default ADAPTIVE=1"
+    },
+    {
+      "id": "BED_MESH_CLEAR",
+      "code": "BED_MESH_CLEAR",
+      "title": {
+        "de": "Bett-Mesh löschen",
+        "en": "Clear Bed Mesh"
+      },
+      "desc": {
+        "de": "Löscht das aktive Bett-Mesh. Empfohlen im End-GCode.",
+        "en": "Clears the active bed mesh. Recommended in end-gcode."
+      },
+      "category": "bed_leveling",
+      "aliases": [],
+      "params": [],
+      "usage": "BED_MESH_CLEAR"
+    },
+    {
+      "id": "BED_MESH_PROFILE",
+      "code": "BED_MESH_PROFILE",
+      "title": {
+        "de": "Bett-Mesh-Profile verwalten",
+        "en": "Manage Bed Mesh Profiles"
+      },
+      "desc": {
+        "de": "Lädt, speichert oder löscht Bett-Mesh-Profile.",
+        "en": "Loads, saves, or removes bed mesh profiles."
+      },
+      "category": "bed_leveling",
+      "aliases": [],
+      "params": [
+        {
+          "key": "LOAD",
+          "type": "string",
+          "desc": {
+            "de": "Zu ladendes Profil",
+            "en": "Profile to load"
+          }
+        },
+        {
+          "key": "SAVE",
+          "type": "string",
+          "desc": {
+            "de": "Zu speicherndes Profil",
+            "en": "Profile to save"
+          }
+        },
+        {
+          "key": "REMOVE",
+          "type": "string",
+          "desc": {
+            "de": "Zu löschendes Profil",
+            "en": "Profile to remove"
+          }
+        }
+      ],
+      "usage": "BED_MESH_PROFILE LOAD=default\nBED_MESH_PROFILE SAVE=test"
+    },
+    {
+      "id": "PROBE",
+      "code": "PROBE",
+      "title": {
+        "de": "Einzelmessung",
+        "en": "Single Probe"
+      },
+      "desc": {
+        "de": "Führt eine einzelne Z-Sonden-Messung an der aktuellen XY-Position durch.",
+        "en": "Performs a single Z-probe measurement at current XY position."
+      },
+      "category": "probing",
+      "aliases": [],
+      "params": [],
+      "usage": "PROBE"
+    },
+    {
+      "id": "PROBE_ACCURACY",
+      "code": "PROBE_ACCURACY",
+      "title": {
+        "de": "Sonden-Genauigkeitstest",
+        "en": "Probe Accuracy Test"
+      },
+      "desc": {
+        "de": "Testet die Wiederholgenauigkeit der Z-Sonde.",
+        "en": "Tests the repeatability of the Z-probe."
+      },
+      "category": "probing",
+      "aliases": [],
+      "params": [
+        {
+          "key": "SAMPLES",
+          "type": "number",
+          "desc": {
+            "de": "Anzahl Messungen (default=10)",
+            "en": "Number of samples (default=10)"
+          }
+        }
+      ],
+      "usage": "PROBE_ACCURACY SAMPLES=10"
+    },
+    {
+      "id": "PROBE_CALIBRATE",
+      "code": "PROBE_CALIBRATE",
+      "title": {
+        "de": "Sonden-Kalibrierung",
+        "en": "Probe Calibration"
+      },
+      "desc": {
+        "de": "Startet den interaktiven Assistenten zur Z-Offset-Kalibrierung der Sonde.",
+        "en": "Starts interactive wizard for probe Z-offset calibration."
+      },
+      "category": "calibration",
+      "aliases": [],
+      "params": [],
+      "usage": "PROBE_CALIBRATE"
+    },
+    {
+      "id": "PID_CALIBRATE",
+      "code": "PID_CALIBRATE",
+      "title": {
+        "de": "PID-Kalibrierung",
+        "en": "PID Calibration"
+      },
+      "desc": {
+        "de": "Führt eine automatische PID-Abstimmung für einen Heizer durch.",
+        "en": "Performs automatic PID tuning for a heater."
+      },
+      "category": "calibration",
+      "aliases": [],
+      "params": [
+        {
+          "key": "HEATER",
+          "type": "string",
+          "desc": {
+            "de": "Heizer-Name (z.B. 'extruder', 'heater_bed')",
+            "en": "Heater name (e.g. 'extruder', 'heater_bed')"
+          }
+        },
+        {
+          "key": "TARGET",
+          "type": "number",
+          "desc": {
+            "de": "Zieltemperatur (°C)",
+            "en": "Target temperature (°C)"
+          }
+        }
+      ],
+      "usage": "PID_CALIBRATE HEATER=extruder TARGET=210\nPID_CALIBRATE HEATER=heater_bed TARGET=60"
+    },
+    {
+      "id": "PAUSE",
+      "code": "PAUSE",
+      "title": {
+        "de": "Druck pausieren",
+        "en": "Pause Print"
+      },
+      "desc": {
+        "de": "Pausiert den aktuellen Druck und speichert die Position.",
+        "en": "Pauses the current print and captures the position."
+      },
+      "category": "print_control",
+      "aliases": [],
+      "params": [],
+      "usage": "PAUSE"
+    },
+    {
+      "id": "RESUME",
+      "code": "RESUME",
+      "title": {
+        "de": "Druck fortsetzen",
+        "en": "Resume Print"
+      },
+      "desc": {
+        "de": "Setzt einen pausierten Druck fort.",
+        "en": "Resumes a paused print."
+      },
+      "category": "print_control",
+      "aliases": [],
+      "params": [
+        {
+          "key": "VELOCITY",
+          "type": "number",
+          "desc": {
+            "de": "Rückkehrgeschwindigkeit (mm/s)",
+            "en": "Return velocity (mm/s)"
+          }
+        }
+      ],
+      "usage": "RESUME\nRESUME VELOCITY=50"
+    },
+    {
+      "id": "CANCEL_PRINT",
+      "code": "CANCEL_PRINT",
+      "title": {
+        "de": "Druck abbrechen",
+        "en": "Cancel Print"
+      },
+      "desc": {
+        "de": "Bricht den aktuellen Druck ab.",
+        "en": "Cancels the current print."
+      },
+      "category": "print_control",
+      "aliases": [],
+      "params": [],
+      "usage": "CANCEL_PRINT"
+    },
+    {
+      "id": "SAVE_CONFIG",
+      "code": "SAVE_CONFIG",
+      "title": {
+        "de": "Konfiguration speichern",
+        "en": "Save Configuration"
+      },
+      "desc": {
+        "de": "Speichert die aktuelle Konfiguration dauerhaft in printer.cfg und startet Klipper neu.",
+        "en": "Saves current configuration permanently to printer.cfg and restarts Klipper."
+      },
+      "category": "configuration",
+      "aliases": [],
+      "params": [],
+      "usage": "SAVE_CONFIG"
+    },
+    {
+      "id": "SET_PRESSURE_ADVANCE",
+      "code": "SET_PRESSURE_ADVANCE",
+      "title": {
+        "de": "Pressure Advance setzen",
+        "en": "Set Pressure Advance"
+      },
+      "desc": {
+        "de": "Setzt den Pressure Advance Wert für bessere Ecken und Kanten.",
+        "en": "Sets the pressure advance value for better corners and edges."
+      },
+      "category": "extruder",
+      "aliases": [],
+      "params": [
+        {
+          "key": "EXTRUDER",
+          "type": "string",
+          "desc": {
+            "de": "Extruder-Name",
+            "en": "Extruder name"
+          }
+        },
+        {
+          "key": "ADVANCE",
+          "type": "number",
+          "desc": {
+            "de": "Pressure Advance Wert",
+            "en": "Pressure advance value"
+          }
+        },
+        {
+          "key": "SMOOTH_TIME",
+          "type": "number",
+          "desc": {
+            "de": "Glättungszeit",
+            "en": "Smooth time"
+          }
+        }
+      ],
+      "usage": "SET_PRESSURE_ADVANCE ADVANCE=0.05"
+    },
+    {
+      "id": "SET_GCODE_OFFSET",
+      "code": "SET_GCODE_OFFSET",
+      "title": {
+        "de": "GCode-Offset setzen",
+        "en": "Set GCode Offset"
+      },
+      "desc": {
+        "de": "Setzt einen Positions-Offset für alle weiteren G-Code-Befehle.",
+        "en": "Sets a position offset for all subsequent G-code commands."
+      },
+      "category": "configuration",
+      "aliases": [],
+      "params": [
+        {
+          "key": "X",
+          "type": "number",
+          "desc": {
+            "de": "X-Offset (mm)",
+            "en": "X offset (mm)"
+          }
+        },
+        {
+          "key": "Y",
+          "type": "number",
+          "desc": {
+            "de": "Y-Offset (mm)",
+            "en": "Y offset (mm)"
+          }
+        },
+        {
+          "key": "Z",
+          "type": "number",
+          "desc": {
+            "de": "Z-Offset (mm)",
+            "en": "Z offset (mm)"
+          }
+        }
+      ],
+      "usage": "SET_GCODE_OFFSET Z=0.1"
+    },
+    {
+      "id": "RESTART",
+      "code": "RESTART",
+      "title": {
+        "de": "Klipper neustarten",
+        "en": "Restart Klipper"
+      },
+      "desc": {
+        "de": "Lädt die Konfiguration neu und führt einen internen Reset durch.",
+        "en": "Reloads configuration and performs an internal reset."
+      },
+      "category": "control",
+      "aliases": [],
+      "params": [],
+      "usage": "RESTART"
+    },
+    {
+      "id": "FIRMWARE_RESTART",
+      "code": "FIRMWARE_RESTART",
+      "title": {
+        "de": "Firmware neustarten",
+        "en": "Firmware Restart"
+      },
+      "desc": {
+        "de": "Wie RESTART, löscht aber auch Fehler im Mikrocontroller.",
+        "en": "Like RESTART but also clears error states from the microcontroller."
+      },
+      "category": "control",
+      "aliases": [],
+      "params": [],
+      "usage": "FIRMWARE_RESTART"
+    },
+    {
+      "id": "QUERY_ENDSTOPS",
+      "code": "QUERY_ENDSTOPS",
+      "title": {
+        "de": "Endstops abfragen",
+        "en": "Query Endstops"
+      },
+      "desc": {
+        "de": "Zeigt den Status aller Endstops an.",
+        "en": "Reports the status of all endstops."
+      },
+      "category": "query",
+      "aliases": [],
+      "params": [],
+      "usage": "QUERY_ENDSTOPS"
+    },
+    {
+      "id": "GET_POSITION",
+      "code": "GET_POSITION",
+      "title": {
+        "de": "Detaillierte Position abfragen",
+        "en": "Get Detailed Position"
+      },
+      "desc": {
+        "de": "Gibt detaillierte Informationen zur aktuellen Toolhead-Position aus.",
+        "en": "Reports detailed information about the current toolhead location."
+      },
+      "category": "query",
+      "aliases": [],
+      "params": [],
+      "usage": "GET_POSITION"
+    },
+    {
+      "id": "Z_ENDSTOP_CALIBRATE",
+      "code": "Z_ENDSTOP_CALIBRATE",
+      "title": {
+        "de": "Z-Endstop kalibrieren",
+        "en": "Calibrate Z Endstop"
+      },
+      "desc": {
+        "de": "Startet den Assistenten zur Z-Endstop-Kalibrierung.",
+        "en": "Starts the Z-endstop calibration wizard."
+      },
+      "category": "calibration",
+      "aliases": [],
+      "params": [],
+      "usage": "Z_ENDSTOP_CALIBRATE"
+    },
+    {
+      "id": "SHAPER_CALIBRATE",
+      "code": "SHAPER_CALIBRATE",
+      "title": {
+        "de": "Input Shaper kalibrieren",
+        "en": "Calibrate Input Shaper"
+      },
+      "desc": {
+        "de": "Führt eine Input-Shaper-Kalibrierung zur Resonanzkompensation durch.",
+        "en": "Performs input shaper calibration for resonance compensation."
+      },
+      "category": "calibration",
+      "aliases": [],
+      "params": [
+        {
+          "key": "AXIS",
+          "type": "string",
+          "desc": {
+            "de": "Achse (X oder Y)",
+            "en": "Axis (X or Y)"
+          }
+        }
+      ],
+      "usage": "SHAPER_CALIBRATE AXIS=X"
+    },
+    {
+      "id": "SET_INPUT_SHAPER",
+      "code": "SET_INPUT_SHAPER",
+      "title": {
+        "de": "Input Shaper setzen",
+        "en": "Set Input Shaper"
+      },
+      "desc": {
+        "de": "Setzt die Input-Shaper-Parameter für eine Achse.",
+        "en": "Sets the input shaper parameters for an axis."
+      },
+      "category": "settings",
+      "aliases": [],
+      "params": [
+        {
+          "key": "SHAPER_FREQ_X",
+          "type": "number",
+          "desc": {
+            "de": "X-Achsen-Frequenz (Hz)",
+            "en": "X axis frequency (Hz)"
+          }
+        },
+        {
+          "key": "SHAPER_FREQ_Y",
+          "type": "number",
+          "desc": {
+            "de": "Y-Achsen-Frequenz (Hz)",
+            "en": "Y axis frequency (Hz)"
+          }
+        },
+        {
+          "key": "SHAPER_TYPE",
+          "type": "string",
+          "desc": {
+            "de": "Shaper-Typ (mzv, ei, 2hump_ei, 3hump_ei)",
+            "en": "Shaper type (mzv, ei, 2hump_ei, 3hump_ei)"
+          }
+        }
+      ],
+      "usage": "SET_INPUT_SHAPER SHAPER_FREQ_X=50 SHAPER_TYPE=mzv"
+    },
+    {
+      "id": "DUMP_TMC",
+      "code": "DUMP_TMC",
+      "title": {
+        "de": "TMC-Register ausgeben",
+        "en": "Dump TMC Registers"
+      },
+      "desc": {
+        "de": "Gibt die Register eines TMC-Treibers aus.",
+        "en": "Dumps the registers of a TMC driver."
+      },
+      "category": "tmc_drivers",
+      "aliases": [],
+      "params": [
+        {
+          "key": "STEPPER",
+          "type": "string",
+          "desc": {
+            "de": "Stepper-Name",
+            "en": "Stepper name"
+          }
+        }
+      ],
+      "usage": "DUMP_TMC STEPPER=stepper_x"
+    },
+    {
+      "id": "Z_TILT_ADJUST",
+      "code": "Z_TILT_ADJUST",
+      "title": {
+        "de": "Z-Neigung ausrichten",
+        "en": "Adjust Z Tilt"
+      },
+      "desc": {
+        "de": "Richtet die Z-Achsen-Neigung bei Druckern mit mehreren Z-Motoren aus.",
+        "en": "Adjusts Z-axis tilt on printers with multiple Z motors."
+      },
+      "category": "bed_leveling",
+      "aliases": [],
+      "params": [],
+      "usage": "Z_TILT_ADJUST"
+    },
+    {
+      "id": "QUAD_GANTRY_LEVEL",
+      "code": "QUAD_GANTRY_LEVEL",
+      "title": {
+        "de": "Quad-Gantry nivellieren",
+        "en": "Level Quad Gantry"
+      },
+      "desc": {
+        "de": "Nivelliert eine Quad-Gantry-Konstruktion (z.B. Voron V2).",
+        "en": "Levels a quad gantry construction (e.g. Voron V2)."
+      },
+      "category": "bed_leveling",
+      "aliases": [],
+      "params": [],
+      "usage": "QUAD_GANTRY_LEVEL"
+    },
+    {
+      "id": "SCREWS_TILT_CALCULATE",
+      "code": "SCREWS_TILT_CALCULATE",
+      "title": {
+        "de": "Schrauben-Neigung berechnen",
+        "en": "Calculate Screws Tilt"
+      },
+      "desc": {
+        "de": "Misst die Bettneigung und gibt Anweisungen zur Schrauben-Justierung.",
+        "en": "Measures bed tilt and provides screw adjustment instructions."
+      },
+      "category": "bed_leveling",
+      "aliases": [],
+      "params": [],
+      "usage": "SCREWS_TILT_CALCULATE"
+    },
+    {
+      "id": "ACTIVATE_EXTRUDER",
+      "code": "ACTIVATE_EXTRUDER",
+      "title": {
+        "de": "Extruder aktivieren",
+        "en": "Activate Extruder"
+      },
+      "desc": {
+        "de": "Wechselt bei Multi-Extruder-Druckern den aktiven Hotend.",
+        "en": "Changes the active hotend on multi-extruder printers."
+      },
+      "category": "extruder",
+      "aliases": [],
+      "params": [
+        {
+          "key": "EXTRUDER",
+          "type": "string",
+          "desc": {
+            "de": "Extruder-Name (z.B. 'extruder1')",
+            "en": "Extruder name (e.g. 'extruder1')"
+          }
+        }
+      ],
+      "usage": "ACTIVATE_EXTRUDER EXTRUDER=extruder1"
+    },
+    {
+      "id": "TUNING_TOWER",
+      "code": "TUNING_TOWER",
+      "title": {
+        "de": "Tuning-Tower",
+        "en": "Tuning Tower"
+      },
+      "desc": {
+        "de": "Erstellt einen Tuning-Tower zum Testen verschiedener Parameter während des Drucks.",
+        "en": "Creates a tuning tower to test different parameters during a print."
+      },
+      "category": "calibration",
+      "aliases": [],
+      "params": [
+        {
+          "key": "COMMAND",
+          "type": "string",
+          "desc": {
+            "de": "Zu variierender Befehl",
+            "en": "Command to vary"
+          }
+        },
+        {
+          "key": "PARAMETER",
+          "type": "string",
+          "desc": {
+            "de": "Parameter-Name",
+            "en": "Parameter name"
+          }
+        },
+        {
+          "key": "START",
+          "type": "number",
+          "desc": {
+            "de": "Startwert",
+            "en": "Start value"
+          }
+        },
+        {
+          "key": "FACTOR",
+          "type": "number",
+          "desc": {
+            "de": "Änderungsfaktor pro mm",
+            "en": "Change factor per mm"
+          }
+        },
+        {
+          "key": "BAND",
+          "type": "number",
+          "desc": {
+            "de": "Schichtdicke für Änderung",
+            "en": "Layer height for change"
+          }
+        }
+      ],
+      "usage": "TUNING_TOWER COMMAND=SET_PRESSURE_ADVANCE PARAMETER=ADVANCE START=0 FACTOR=0.005"
+    }
+  ]
+}
