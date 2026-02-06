@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G-code Reference - Standalone Test</title>
+    <link rel="stylesheet" href="assets/app.min.css">
+</head>
+<body style="margin: 0; padding: 20px; font-family: sans-serif;">
+    
+    <h1>G-code Reference - Standalone Debug Test</h1>
+    <p>Diese Datei testet das Plugin AUSSERHALB von WordPress.</p>
+    
+    <hr>
+    
+    <h2>Debug Info:</h2>
+    <div id="debug-info" style="background: #f0f0f0; padding: 15px; margin-bottom: 20px; font-family: monospace;">
+        <div>⏳ Lade JavaScript...</div>
+    </div>
+    
+    <hr>
+    
+    <h2>Plugin Output:</h2>
+    
+    <!-- GENAU DIE GLEICHE STRUKTUR WIE IM SHORTCODE -->
+    <div id="gref-root" class="gref" style="height: 600px;">
+      <div id="gref-status" class="gref__status"></div>
+      
+      <div class="gref__header">
+        <div class="gref__searchWrap">
+          <input id="gref-search" type="search" class="gref__search" />
+          <button type="button" class="gref__clear" aria-label="Clear search">×</button>
+        </div>
+        <div class="gref__langSwitch">
+          <button type="button" class="gref__langBtn" data-lang="de">DE</button>
+          <button type="button" class="gref__langBtn" data-lang="en">EN</button>
+        </div>
+      </div>
+
+      <div class="gref__hint"></div>
+
+      <div class="gref__body">
+        <aside class="gref__sidebar">
+          <div id="gref-toc" class="gref__toc"></div>
+        </aside>
+
+        <div class="gref__pane">
+          <div id="gref-toc-mobile" class="gref__tocMobile"></div>
+          
+          <button type="button" class="gref__drawer-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          <div class="gref__resultsWrap">
+            <div id="gref-results" class="gref__results"></div>
+          </div>
+        </div>
+
+        <aside class="gref__explain">
+          <div id="gref-explain"></div>
+        </aside>
+      </div>
+
+      <div id="gref-drawer" class="gref__drawer"></div>
+      <div id="gref-backdrop" class="gref__backdrop"></div>
+    </div>
+
+    <!-- CONFIG MUSS VOR DEM HAUPT-SCRIPT KOMMEN -->
+    <script>
+        window.GCodeRefConfig = {
+            jsonUrl: './data/marlin-commands.json',
+            fallbackJsonUrl: '',
+            ui: {
+                defaultLang: 'de'
+            }
+        };
+        
+        // Debug ausgabe
+        document.getElementById('debug-info').innerHTML = `
+            <div style="color: green;">✓ Config geladen</div>
+            <div>JSON URL: ${window.GCodeRefConfig.jsonUrl}</div>
+            <div>Root Element: ${document.getElementById('gref-root') ? '✓ Gefunden' : '✗ FEHLT'}</div>
+        `;
+    </script>
+    
+    <!-- FUSE.JS DEPENDENCY -->
+    <script src="assets/fuse.min.js"></script>
+    
+    <!-- HAUPT-JAVASCRIPT -->
+    <script src="assets/app.min.js"></script>
+    
+    <script>
+        // Weitere Debug-Info NACH dem Laden
+        setTimeout(() => {
+            const info = document.getElementById('debug-info');
+            info.innerHTML += `
+                <div>Fuse.js: ${typeof Fuse === 'function' ? '✓ Geladen' : '✗ FEHLT'}</div>
+                <div>Results Div: ${document.getElementById('gref-results') ? '✓ Gefunden' : '✗ FEHLT'}</div>
+                <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #ccc;">
+                    <strong>Wenn hier nichts erscheint:</strong><br>
+                    Öffnen Sie die Browser-Console (F12) und suchen Sie nach Fehlern!
+                </div>
+            `;
+        }, 1000);
+    </script>
+    
+</body>
+</html>

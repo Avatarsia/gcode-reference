@@ -3,7 +3,7 @@
 /**
  * Plugin Name: G-code Reference (JSON)
  * Description: Interactive G-code reference with split TOC, search, copy, explain. JSON-driven. DE/EN UI toggle.
- * Version: 2.0.0
+ * Version: 2.0.5
  */
 
 if (!defined('ABSPATH')) exit;
@@ -33,17 +33,18 @@ class GCode_Reference_JSON
   }
 
   /**
-   * Load plugin text domain for translations.
+   * Load text domain for translations.
    *
    * @since 2.0.0
    */
   public function load_textdomain()
   {
-    load_plugin_textdomain(
-      self::TEXT_DOMAIN,
-      false,
-      dirname(plugin_basename(__FILE__)) . '/languages'
-    );
+    load_plugin_textdomain(self::TEXT_DOMAIN, false, dirname(plugin_basename(__FILE__)) . '/languages');
+  }
+
+  public function plugin_version()
+  {
+    return dirname(plugin_basename(__FILE__));
   }
 
   /**
@@ -54,7 +55,9 @@ class GCode_Reference_JSON
   public function register_assets()
   {
     $base = plugin_dir_url(__FILE__);
-    $version = '2.0.0';
+
+    // Use timestamp for cache busting to prevent old cached versions
+    $version = '2.0.5-' . filemtime(__DIR__ . '/assets/app.min.css');
 
     // Use minified assets in production, original in development
     $suffix = (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG) ? '' : '.min';
@@ -236,7 +239,7 @@ class GCode_Reference_JSON
   {
     $atts = shortcode_atts([
       'json_url' => '',
-      'height' => '100svh',
+      'height' => '600px',
       'source' => 'marlin',
     ], $atts, 'gcode_reference');
 
@@ -246,14 +249,60 @@ class GCode_Reference_JSON
     $json_url = !empty($atts['json_url']) ? esc_url_raw($atts['json_url']) : $this->get_default_json_url($atts['source']);
 
     $config = [
-      'restUrl' => $this->get_rest_json_url(),
       'jsonUrl' => $json_url,
-      'source' => sanitize_key($atts['source']),
+      'fallbackJsonUrl' => '',
+      'ui' => [
+        'defaultLang' => 'de',
+      ],
     ];
 
-    wp_add_inline_script(self::HANDLE_JS, 'const gcodeReferenceConfig = ' . wp_json_encode($config) . ';', 'before');
+    // CRITICAL: JavaScript expects "GCodeRefConfig" not "gcodeReferenceConfig"
+    wp_add_inline_script(self::HANDLE_JS, 'window.GCodeRefConfig = ' . wp_json_encode($config) . ';', 'before');
 
-    return '<div id="gcode-reference-root" style="height: ' . esc_attr($atts['height']) . ';"></div>';
+    // CRITICAL: HTML structure MUST match CSS expectations
+    ob_start();
+?>
+    <div id="gref-root" class="gref">
+      <div id="gref-status" class="gref__status"></div>
+
+      <div class="gref__shell" style="height: <?php echo esc_attr($atts['height']); ?>;">
+        <!-- LEFT: TOC -->
+        <div class="gref__toc">
+          <div class="gref__tocTop">
+            <div class="gref__tocTitle">G-codes</div>
+            <div class="gref__lang">
+              <button type="button" class="gref__langBtn" data-lang="de">DE</button>
+              <button type="button" class="gref__langBtn" data-lang="en">EN</button>
+            </div>
+          </div>
+          <div id="gref-toc" class="gref__tocList"></div>
+        </div>
+
+        <!-- CENTER: Search + Results -->
+        <div class="gref__pane">
+          <div class="gref__top">
+            <div class="gref__label">G-code Suche</div>
+            <div class="gref__searchRow">
+              <input id="gref-search" type="search" class="gref__search" placeholder="Suche..." />
+              <button type="button" class="gref__clear" aria-label="Clear search">×</button>
+            </div>
+            <div class="gref__hint"></div>
+          </div>
+
+          <div class="gref__resultsWrap">
+            <div id="gref-results" class="gref__results"></div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Explanation panel -->
+        <div class="gref__panel">
+          <div class="gref__panelTitle">Erklärung</div>
+          <div id="gref-explain" class="gref__panelBody"></div>
+        </div>
+      </div>
+    </div>
+<?php
+    return ob_get_clean();
   }
 }
 

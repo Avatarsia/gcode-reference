@@ -4,7 +4,7 @@ Tags: gcode, 3d-printing, marlin, reference, documentation
 Requires at least: 5.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 2.0.0
+Stable tag: 2.0.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,11 +12,12 @@ Interactive G-code reference for 3D printing with fuzzy search, split view, and 
 
 == Description ==
 
-G-code Reference provides an interactive, searchable reference for G-code commands used in 3D printing. Perfect for makers, developers, and anyone working with 3D printers using Marlin firmware.
+G-code Reference provides an interactive, searchable reference for G-code commands used in 3D printing. Perfect for makers, developers, and anyone working with 3D printers using Marlin and Klipper firmware.
 
 **Key Features:**
 
-* **254+ G-code commands** specifically curated for 3D printing
+* **304 G-code commands** - 254 Marlin + 50 Klipper commands
+* **Multi-firmware support** - Marlin and Klipper included
 * **Fuzzy search** - find commands even with typos
 * **Split-view interface** - Table of Contents + Details side-by-side
 * **Responsive design** - Works on desktop, tablet, and mobile
@@ -36,24 +37,29 @@ G-code Reference provides an interactive, searchable reference for G-code comman
 
 **Supported Firmwares:**
 
-* Marlin (included)
-* Klipper (upload custom JSON)
+* Marlin (254 commands included)
+* Klipper (50 commands included)
 * RepRapFirmware (upload custom JSON)
 
 == Installation ==
 
-1. Upload the plugin files to `/wp-content/plugins/gcode-reference/`
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Add the shortcode `[gcode_reference]` to any page or post
-4. (Optional) Upload a custom JSON file in Settings → G-code Reference
+1. **IMPORTANT:** If updating from an older version, deactivate and delete the old version first!
+2. Upload `gcode-reference-2.0.2.zip` via Plugins → Add New → Upload
+3. Activate the plugin
+4. Add the shortcode `[gcode_reference]` to any page or post
+5. (Optional) Configure in Settings → G-code Reference
 
 == Frequently Asked Questions ==
 
 = How do I use the shortcode? =
 
-Simply add `[gcode_reference]` to any page or post. You can optionally specify a custom JSON URL:
+Simply add `[gcode_reference]` to any page or post. 
 
-`[gcode_reference json_url="https://example.com/custom-commands.json"]`
+For Klipper firmware:
+`[gcode_reference source="klipper"]`
+
+Custom height:
+`[gcode_reference height="800px"]`
 
 = Can I use my own G-code data? =
 
@@ -61,29 +67,66 @@ Yes! Go to Settings → G-code Reference and upload your own JSON file. The requ
 
 = Which firmwares are supported? =
 
-The plugin includes Marlin G-codes by default. You can upload custom JSON files for Klipper, RepRapFirmware, or any other firmware.
+The plugin includes Marlin (254 commands) and Klipper (50 commands) by default. You can upload custom JSON files for RepRapFirmware or any other firmware.
 
 = How do I switch between languages? =
 
-The language toggle is visible in the top-right corner of the reference. Click the flag icon to switch between German (DE) and English (EN).
+The language toggle is visible in the top-right corner of the reference. Click DE or EN to switch between German and English.
 
 = Does this work with custom themes? =
 
 Yes, the plugin is theme-independent and uses its own styling. It works with any WordPress theme.
 
-= Can I use this commercially? =
+= I get a "class already declared" error! =
 
-Yes! The plugin is licensed under GPL v2+, which allows commercial use.
+This happens when an old version is still active. Solution:
+1. Deactivate the old version
+2. Delete the old plugin folder
+3. Install the new version
 
 == Screenshots ==
 
 1. Split-view interface with Table of Contents and command details
 2. Mobile responsive design with drawer navigation
 3. Fuzzy search finding commands instantly
-4. Admin settings page for custom JSON upload
+4. Modern admin dashboard with firmware selection
 5. Language switcher (DE/EN)
 
 == Changelog ==
+
+= 2.0.5 - 2026-02-06 =
+* **Fixed**: Language bug - regenerated minified JS to respect defaultLang setting
+* **Fixed**: Parameter descriptions now display in German when defaultLang is 'de'
+* **Improved**: Optimized layout for Full HD (1920px) displays
+* **Improved**: Wider columns - TOC: 380px (was 320px), Right panel: 460px (was 360px)
+* **Improved**: Better spacing between columns (20px gap instead of 16px)
+
+= 2.0.4 - 2026-02-06 =
+* **Critical Fix**: Corrected HTML structure to match CSS expectations
+* Fixed: TOC was taking full width (976px) instead of 320px
+* Fixed: Layout wasn't rendering as 3-column grid
+* Fixed: Added gref__shell wrapper for proper layout container
+* Fixed: Corrected all CSS class names to match stylesheet
+
+= 2.0.3 - 2026-02-06 =
+* **Critical Fix**: Added timestamp-based cache busting for CSS/JS assets
+* Fixed: Browser cache was preventing updated assets from loading
+* Note: If you still see issues, clear your browser cache (Ctrl+F5)
+
+= 2.0.2 - 2026-02-06 =
+* **Critical Fix**: Added class_exists() check to prevent fatal error when multiple versions are installed
+* Improved: Installation instructions now mention deactivating old versions first
+* Note: If you see "class already declared" error, deactivate and delete old version first!
+
+= 2.0.1 - 2026-02-06 =
+* **Critical Fix**: Shortcode now renders correctly
+* Fixed: HTML structure output (was missing gref-root and child elements)
+* Fixed: JavaScript config object name (GCodeRefConfig)
+* Fixed: Default height changed from 100svh to 600px for better compatibility
+* Added: Modern admin dashboard with card-based layout
+* Added: Klipper firmware support (50 commands with DE/EN translations)
+* Added: Firmware selection in admin UI
+* Improved: Shortcode documentation in admin panel
 
 = 2.0.0 - 2026-02-06 =
 * **Major Update**: Internationalization support
@@ -144,8 +187,9 @@ Returns the complete G-code dataset as JSON.
 
 **Shortcode Attributes:**
 
+* `source` - Firmware source (marlin, klipper)
 * `json_url` - Override JSON source URL
-* `height` - Container height (default: 100svh)
+* `height` - Container height (default: 600px)
 
 **Browser Support:**
 
