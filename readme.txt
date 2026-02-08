@@ -4,7 +4,7 @@ Tags: gcode, 3d-printing, marlin, reference, documentation
 Requires at least: 5.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 2.0.6
+Stable tag: 2.1.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -93,6 +93,36 @@ This happens when an old version is still active. Solution:
 5. Language switcher (DE/EN)
 
 == Changelog ==
+
+= 2.1.3 - 2026-02-07 =
+* **Localization**: Added specific translations for G12 (Nozzle Clean) and T0/T1 parameters.
+
+= 2.1.2 - 2026-02-07 =
+* **Fixed**: TOC navigation not scrolling correctly in Grid Layout.
+* **Improved**: Interaction logic - TOC clicks keeping wide view, only example clicks trigger details view.
+* **Improved**: Explanation panel now shows element description (translated) for better context.
+* **Localization**: Added German translations for ~140 common parameters (Axes, Feedrate, Temp, etc.) in `marlin-commands.json`.
+
+= 2.1.1 - 2026-02-07 =
+* **Layout**: Complete UX overhaul (Dynamic Grid)
+* **Search**: Now spans entire width above results
+* **Interactive**: Details view expands on click, TOC collapses to icons
+* **Fix**: Search bar now reliably separated from content
+
+= 2.1.0 - 2026-02-07 =
+* **Fixed**: Actually applied the CSS fixes (v2.0.8/v2.0.9 had file permission issues)
+* **Improved**: Added ID-based specificity (`#gref-search`) to guarantee theme override
+
+= 2.0.9 - 2026-02-07 =
+* **Fixed**: Forced search box styling (font-weight: normal) to override aggressive themes
+* **Improved**: Placeholder text is now reliably light gray even with theme interference
+
+= 2.0.8 - 2026-02-07 =
+* **Improved**: Search box visuals (stronger internal shadow/border) to make it stand out
+* **Improved**: Lighter placeholder text in search box to distinguish from content
+
+= 2.0.7 - 2026-02-06 =
+* **Hotfix**: Adjusted layout for boxed themes (Narrower TOC/Panel)
 
 = 2.0.6 - 2026-02-06 =
 * **Hotfix**: Reverted aggressive JS minification that caused syntax errors

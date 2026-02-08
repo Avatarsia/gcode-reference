@@ -37,7 +37,7 @@
     try { return localStorage.getItem("gref_lang") || ""; } catch (e) { return ""; }
   }
   function setStoredLang(lang) {
-    try { localStorage.setItem("gref_lang", lang); } catch (e) {}
+    try { localStorage.setItem("gref_lang", lang); } catch (e) { }
   }
 
   // -----------------------
@@ -48,7 +48,7 @@
 
   function escapeHtml(s) {
     return String(s).replace(/[&<>"']/g, function (m) {
-      return ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[m];
+      return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[m];
     });
   }
 
@@ -265,6 +265,13 @@
 
       html += '<div class="gref__exSection">';
       html += "<div><strong>" + (lang === "de" ? "Zeile" : "Line") + ":</strong> <code>" + escapeHtml(sections[s].line) + "</code></div>";
+
+      // Show short description if available
+      var mainDesc = cmdObj ? textFromLang(cmdObj.desc, lang) : "";
+      if (mainDesc) {
+        html += '<p style="margin:8px 0; color:#334155;">' + escapeHtml(mainDesc) + '</p>';
+      }
+
       html += '<div class="gref__kv"><div><strong>' + (lang === "de" ? "Befehl" : "Command") + ":</strong> <code>" + escapeHtml(cmd) + "</code></div>";
 
       if (args.length) {
@@ -298,7 +305,7 @@
   }
 
   function setHash(id) {
-    try { history.replaceState(null, "", "#" + encodeURIComponent(id)); } catch (e) {}
+    try { history.replaceState(null, "", "#" + encodeURIComponent(id)); } catch (e) { }
   }
 
   // -----------------------
@@ -309,8 +316,8 @@
     // "M109 – Set Hotend Temp & Wait style"
     return (
       '<div class="gref__tocItem" role="button" tabindex="0" data-id="' + escapeHtml(cmd.id) + '">' +
-        '<div class="gref__tocCode">' + escapeHtml(cmd.code || cmd.id) + "</div>" +
-        '<div class="gref__tocLabel">' + escapeHtml(label) + "</div>" +
+      '<div class="gref__tocCode">' + escapeHtml(cmd.code || cmd.id) + "</div>" +
+      '<div class="gref__tocLabel">' + escapeHtml(label) + "</div>" +
       "</div>"
     );
   }
@@ -328,8 +335,8 @@
 
   function renderCard(cmd, lang, ui) {
     var title = textFromLang(cmd.title, lang) || cmd.label || "";
-    var desc  = textFromLang(cmd.desc, lang) || "";
-    var tag   = title; // keep tag as title; optionally you can use category
+    var desc = textFromLang(cmd.desc, lang) || "";
+    var tag = title; // keep tag as title; optionally you can use category
 
     var examples = cmd.examples || [];
     var linesHtml = "";
@@ -344,16 +351,16 @@
 
     return (
       '<article class="gref__card" id="' + escapeHtml(cmd.id) + '" data-id="' + escapeHtml(cmd.id) + '">' +
-        '<div class="gref__head">' +
-          '<div class="gref__cmd">' + escapeHtml(cmd.code || cmd.id) + "</div>" +
-          '<div class="gref__tag">' + escapeHtml(tag) + "</div>" +
-        "</div>" +
-        (desc ? '<p class="gref__desc">' + escapeHtml(desc) + "</p>" : "") +
-        renderBadges(cmd, lang, ui) +
-        '<div class="gref__codeWrap">' +
-          '<button class="gref__copy" type="button">Copy</button>' +
-          '<pre class="gref__code"><code>' + linesHtml + "</code></pre>" +
-        "</div>" +
+      '<div class="gref__head">' +
+      '<div class="gref__cmd">' + escapeHtml(cmd.code || cmd.id) + "</div>" +
+      '<div class="gref__tag">' + escapeHtml(tag) + "</div>" +
+      "</div>" +
+      (desc ? '<p class="gref__desc">' + escapeHtml(desc) + "</p>" : "") +
+      renderBadges(cmd, lang, ui) +
+      '<div class="gref__codeWrap">' +
+      '<button class="gref__copy" type="button">Copy</button>' +
+      '<pre class="gref__code"><code>' + linesHtml + "</code></pre>" +
+      "</div>" +
       "</article>"
     );
   }
@@ -410,7 +417,8 @@
     var ui = I18N[lang];
 
     // elements
-    var pane = root.querySelector(".gref__pane");
+    var shell = document.getElementById("gref-shell");
+    var resultsPane = document.getElementById("gref-results-pane");
     var resultsWrap = root.querySelector(".gref__resultsWrap");
     var toc = document.getElementById("gref-toc");
     var tocMobile = document.getElementById("gref-toc-mobile");
@@ -418,19 +426,36 @@
     var explain = document.getElementById("gref-explain");
     var search = document.getElementById("gref-search");
     var clearBtn = root.querySelector(".gref__clear");
+    var hint = document.getElementById("gref-hint");
 
     var drawerBtn = root.querySelector(".gref__tocBtn");
     var drawer = document.getElementById("gref-drawer");
     var backdrop = document.getElementById("gref-backdrop");
     var drawerClose = root.querySelector(".gref__drawerClose");
 
-    if (!pane || !resultsWrap || !toc || !results || !explain || !search || !clearBtn) return;
+    // Fix for legacy selectors if html changed
+    // IMPORTANT: paneEl must be the **scrollable** container to work with scrollToId
+    var paneEl = resultsWrap;
+
+    if (!resultsWrap || !toc || !results || !explain || !search || !clearBtn) return;
 
     // Initial UI labels (before JSON load)
     applyI18n(root, lang, ui);
     setLangButtons(root, lang);
     search.setAttribute("placeholder", ui.searchPlaceholder);
+    if (hint) hint.textContent = ui.hint;
     explain.textContent = ui.explainEmpty;
+
+    // --- STATE MANAGEMENT ---
+    function setDetailsOpen(isOpen) {
+      if (!shell) return;
+      if (isOpen) {
+        shell.classList.add("is-details-open");
+      } else {
+        shell.classList.remove("is-details-open");
+      }
+    }
+    // ------------------------
 
     // drawer
     function openDrawer() {
@@ -543,6 +568,9 @@
       if (!id) return;
       activeId = id;
 
+      // DO NOT expand to details view automatically on simple activation (scroll/click)
+      // setDetailsOpen(true); <-- REMOVED
+
       // TOC active class
       [toc, tocMobile].forEach(function (r) {
         if (!r) return;
@@ -612,7 +640,7 @@
 
       var best = ids.length ? ids[0] : bestMatchId(q);
       if (best) {
-        scrollToId(resultsWrap, best);
+        scrollToId(paneEl, best);
         setActive(best, true);
       }
     }
@@ -644,8 +672,9 @@
       if (!item) return;
       var id = item.getAttribute("data-id");
       if (id) {
-        scrollToId(resultsWrap, id);
+        scrollToId(paneEl, id); // Use validated paneEl
         setActive(id, true);
+        setDetailsOpen(false); // REVERT to Wide mode when navigating via TOC
         if (drawerBtn && drawerBtn.getAttribute("aria-expanded") === "true") closeDrawer();
       }
     }
@@ -659,8 +688,9 @@
       e.preventDefault();
       var id = item.getAttribute("data-id");
       if (id) {
-        scrollToId(resultsWrap, id);
+        scrollToId(paneEl, id);
         setActive(id, true);
+        setDetailsOpen(false); // REVERT to Wide mode
       }
     });
 
@@ -705,6 +735,9 @@
         $all(results, ".gref__line--active").forEach(function (n) { n.classList.remove("gref__line--active"); });
         lineEl.classList.add("gref__line--active");
         explain.innerHTML = explainLine(lineEl.getAttribute("data-line") || "", lang, commandByCode, commandSet);
+
+        // TRIGGER DETAILS MODE HERE
+        setDetailsOpen(true);
       }
     });
 
@@ -722,9 +755,11 @@
       clearBtn.style.visibility = "hidden";
       setMatchState([]);
       explain.textContent = I18N[lang].explainEmpty;
+      setDetailsOpen(false); // Reset to Wide mode
       search.focus();
     });
-    clearBtn.style.visibility = "hidden";
+    // check init state
+    clearBtn.style.visibility = normalizeQuery(search.value) ? "visible" : "hidden";
 
     // Language toggle
     $all(root, ".gref__langBtn").forEach(function (btn) {
@@ -797,7 +832,7 @@
       var hash = decodeURIComponent((location.hash || "").replace(/^#/, ""));
       if (hash) {
         // highlight + jump if exists
-        var ok = scrollToId(resultsWrap, hash);
+        var ok = scrollToId(paneEl, hash);
         if (ok) {
           setActive(hash, true);
           setMatchState([hash]);

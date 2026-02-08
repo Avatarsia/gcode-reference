@@ -59,13 +59,18 @@
   text-overflow: ellipsis;
 }
 
-/* Main layout - FULL HD OPTIMIZED */
+/* Main layout - Resilient for Boxed Themes */
 .gref__shell {
   height: var(--gref-height);
   display: grid;
-  grid-template-columns: 360px 1fr 480px;
-  /* Wider sidebars for FullHD */
-  gap: 24px;
+  /* 
+     TOC: 260px (Compact yet readable)
+     Middle: 1fr (Takes remaining space)
+     Right: 350px (Balanced for reading)
+     Total fixed overhead: ~640px. Fits safely in 1000px+ containers.
+  */
+  grid-template-columns: 260px 1fr 350px;
+  gap: 20px;
   align-items: stretch;
 }
 
@@ -177,8 +182,102 @@
   background: #fffbeb;
 }
 
-/* ========== Right pane (Search + Results) ========== */
-.gref__pane {
+/* Main layout - Dynamic Grid */
+.gref__shell {
+  height: var(--gref-height);
+  display: grid;
+  /* Default State: Normal TOC | Wide Results | Hidden Panel (0px) */
+  grid-template-columns: 260px 1fr 0px;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "toc search search"
+    "toc results panel";
+  column-gap: 20px;
+  row-gap: 16px;
+  align-items: stretch;
+  transition: grid-template-columns 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  overflow: hidden;
+  /* Fix for 0px panel content spill */
+}
+
+/* Active State (Selection made): Mini TOC | Results | Expanded Panel */
+.gref__shell.is-details-open {
+  /* Mini TOC (80px) | Content | Panel (350px) */
+  grid-template-columns: 80px 1fr 350px;
+}
+
+/* TOC Area */
+.gref__toc {
+  grid-area: toc;
+  border: 1px solid var(--gref-border);
+  border-radius: 12px;
+  background: var(--gref-bg);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  transition: padding 0.4s;
+  overflow: hidden;
+}
+
+/* Mini TOC Styles */
+.gref__shell.is-details-open .gref__toc {
+  padding: 16px 8px;
+  /* Tighter padding */
+}
+
+.gref__shell.is-details-open .gref__tocTop {
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+
+.gref__shell.is-details-open .gref__tocTitle {
+  display: none;
+  /* Hide title */
+}
+
+.gref__shell.is-details-open .gref__lang {
+  width: 100%;
+  justify-content: center;
+}
+
+.gref__shell.is-details-open .gref__langBtn {
+  padding: 4px 6px;
+  font-size: 11px;
+}
+
+.gref__shell.is-details-open .gref__tocItem {
+  justify-content: center;
+  padding: 8px 4px;
+}
+
+.gref__shell.is-details-open .gref__tocLabel {
+  display: none;
+  /* Hide labels */
+}
+
+.gref__shell.is-details-open .gref__tocCode {
+  margin: 0;
+  text-align: center;
+  font-size: 13px;
+}
+
+/* Search Area */
+.gref__searchArea {
+  grid-area: search;
+}
+
+.gref__searchRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Results Pane (Was .gref__pane) */
+.gref__resultsPane {
+  grid-area: results;
   border: 1px solid var(--gref-border);
   border-radius: 12px;
   background: var(--gref-bg);
@@ -187,16 +286,29 @@
   min-height: 0;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
-/* Search/top area */
-.gref__top {
+/* Explanation Panel */
+.gref__panel {
+  grid-area: panel;
+  border: 1px solid var(--gref-border);
+  border-radius: 12px;
+  background: #fff;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--gref-border);
+  /* Visual hiding when 0px width */
+  padding: 0;
+  border-width: 0;
+  opacity: 0;
+  transition: opacity 0.3s 0.1s, padding 0.1s, border-width 0.1s;
+}
+
+.gref__shell.is-details-open .gref__panel {
+  padding: 16px;
+  border-width: 1px;
+  opacity: 1;
 }
 
 .gref__label {
@@ -211,20 +323,53 @@
   gap: 10px;
 }
 
-.gref__search {
+/* High specificity override */
+.gref__search,
+#gref-search {
   flex: 1;
   padding: 12px 16px;
-  border: 1px solid #cbd5e1;
+  border: 2px solid #cbd5e1;
   border-radius: 8px;
   font-size: 15px;
-  transition: border-color 0.2s;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  font-weight: 400 !important;
+  color: #334155 !important;
+  font-family: inherit;
+  /* Ensure no weird font inheritance */
 }
 
-.gref__search:focus {
+/* Force placeholder styling with high specificity and !important */
+.gref__search::placeholder,
+#gref-search::placeholder {
+  color: #94a3b8 !important;
+  font-weight: 400 !important;
+  opacity: 1 !important;
+}
+
+.gref__search::-webkit-input-placeholder,
+#gref-search::-webkit-input-placeholder {
+  color: #94a3b8 !important;
+  font-weight: 400 !important;
+}
+
+.gref__search::-moz-placeholder,
+#gref-search::-moz-placeholder {
+  color: #94a3b8 !important;
+  font-weight: 400 !important;
+}
+
+.gref__search:-ms-input-placeholder,
+#gref-search:-ms-input-placeholder {
+  color: #94a3b8 !important;
+  font-weight: 400 !important;
+}
+
+.gref__search:focus,
+#gref-search:focus {
   outline: none;
   border-color: var(--gref-primary);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2), 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 .gref__clear {

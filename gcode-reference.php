@@ -3,7 +3,7 @@
 /**
  * Plugin Name: G-code Reference (JSON)
  * Description: Interactive G-code reference with split TOC, search, copy, explain. JSON-driven. DE/EN UI toggle.
- * Version: 2.0.6
+ * Version: 2.1.1
  */
 
 if (!defined('ABSPATH')) exit;
@@ -57,7 +57,7 @@ class GCode_Reference_JSON
     $base = plugin_dir_url(__FILE__);
 
     // Use timestamp for cache busting to prevent old cached versions
-    $version = '2.0.6-' . filemtime(__DIR__ . '/assets/app.min.css');
+    $version = '2.1.1-' . filemtime(__DIR__ . '/assets/app.min.css');
 
     // Use minified assets in production, original in development
     $suffix = (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG) ? '' : '.min';
@@ -265,8 +265,8 @@ class GCode_Reference_JSON
     <div id="gref-root" class="gref">
       <div id="gref-status" class="gref__status"></div>
 
-      <div class="gref__shell" style="height: <?php echo esc_attr($atts['height']); ?>;">
-        <!-- LEFT: TOC -->
+      <div id="gref-shell" class="gref__shell" style="height: <?php echo esc_attr($atts['height']); ?>;">
+        <!-- AREA: TOC -->
         <div class="gref__toc">
           <div class="gref__tocTop">
             <div class="gref__tocTitle">G-codes</div>
@@ -278,23 +278,25 @@ class GCode_Reference_JSON
           <div id="gref-toc" class="gref__tocList"></div>
         </div>
 
-        <!-- CENTER: Search + Results -->
-        <div class="gref__pane">
+        <!-- AREA: SEARCH -->
+        <div class="gref__searchArea">
           <div class="gref__top">
-            <div class="gref__label">G-code Suche</div>
             <div class="gref__searchRow">
               <input id="gref-search" type="search" class="gref__search" placeholder="Suche..." />
               <button type="button" class="gref__clear" aria-label="Clear search">×</button>
             </div>
-            <div class="gref__hint"></div>
           </div>
+        </div>
 
+        <!-- AREA: RESULTS -->
+        <div id="gref-results-pane" class="gref__resultsPane">
+          <div class="gref__hint" id="gref-hint"></div>
           <div class="gref__resultsWrap">
             <div id="gref-results" class="gref__results"></div>
           </div>
         </div>
 
-        <!-- RIGHT: Explanation panel -->
+        <!-- AREA: PANEL -->
         <div class="gref__panel">
           <div class="gref__panelTitle">Erklärung</div>
           <div id="gref-explain" class="gref__panelBody"></div>

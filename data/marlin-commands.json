@@ -53,7 +53,7 @@
           "key": "X",
           "type": "number",
           "desc": {
-            "de": "An absolute or relative coordinate on the X axis (in current units).",
+            "de": "Eine absolute oder relative Koordinate auf der X-Achse (in aktuellen Einheiten).",
             "en": "An absolute or relative coordinate on the X axis (in current units)."
           }
         },
@@ -61,7 +61,7 @@
           "key": "Y",
           "type": "number",
           "desc": {
-            "de": "An absolute or relative coordinate on the Y axis (in current units).",
+            "de": "Eine absolute oder relative Koordinate auf der Y-Achse (in aktuellen Einheiten).",
             "en": "An absolute or relative coordinate on the Y axis (in current units)."
           }
         },
@@ -69,7 +69,7 @@
           "key": "Z",
           "type": "number",
           "desc": {
-            "de": "An absolute or relative coordinate on the Z axis (in current units).",
+            "de": "Eine absolute oder relative Koordinate auf der Z-Achse (in aktuellen Einheiten).",
             "en": "An absolute or relative coordinate on the Z axis (in current units)."
           }
         },
@@ -77,7 +77,7 @@
           "key": "A",
           "type": "number",
           "desc": {
-            "de": "An absolute or relative coordinate on the A axis (in current units).",
+            "de": "Eine absolute oder relative Koordinate auf der A-Achse (in aktuellen Einheiten).",
             "en": "An absolute or relative coordinate on the A axis (in current units)."
           }
         },
@@ -85,7 +85,7 @@
           "key": "B",
           "type": "number",
           "desc": {
-            "de": "An absolute or relative coordinate on the B axis (in current units).",
+            "de": "Eine absolute oder relative Koordinate auf der B-Achse (in aktuellen Einheiten).",
             "en": "An absolute or relative coordinate on the B axis (in current units)."
           }
         },
@@ -93,7 +93,7 @@
           "key": "C",
           "type": "number",
           "desc": {
-            "de": "An absolute or relative coordinate on the C axis (in current units).",
+            "de": "Eine absolute oder relative Koordinate auf der C-Achse (in aktuellen Einheiten).",
             "en": "An absolute or relative coordinate on the C axis (in current units)."
           }
         },
@@ -101,7 +101,7 @@
           "key": "U",
           "type": "number",
           "desc": {
-            "de": "An absolute or relative coordinate on the U axis (in current units).",
+            "de": "Eine absolute oder relative Koordinate auf der U-Achse (in aktuellen Einheiten).",
             "en": "An absolute or relative coordinate on the U axis (in current units)."
           }
         },
@@ -109,7 +109,7 @@
           "key": "V",
           "type": "number",
           "desc": {
-            "de": "An absolute or relative coordinate on the V axis (in current units).",
+            "de": "Eine absolute oder relative Koordinate auf der V-Achse (in aktuellen Einheiten).",
             "en": "An absolute or relative coordinate on the V axis (in current units)."
           }
         },
@@ -117,7 +117,7 @@
           "key": "W",
           "type": "number",
           "desc": {
-            "de": "An absolute or relative coordinate on the W axis (in current units).",
+            "de": "Eine absolute oder relative Koordinate auf der W-Achse (in aktuellen Einheiten).",
             "en": "An absolute or relative coordinate on the W axis (in current units)."
           }
         },
@@ -125,7 +125,7 @@
           "key": "E",
           "type": "number",
           "desc": {
-            "de": "An absolute or relative coordinate on the E (extruder) axis (in current units). The E axis describes the position of the filament in terms of input to the extruder feeder.",
+            "de": "Eine absolute oder relative Koordinate auf der E-Achse (Extruder). Position des Filaments relativ zum Extruder-Eingang.",
             "en": "An absolute or relative coordinate on the E (extruder) axis (in current units). The E axis describes the position of the filament in terms of input to the extruder feeder."
           }
         },
@@ -133,7 +133,7 @@
           "key": "F",
           "type": "number",
           "desc": {
-            "de": "Set the requested movement rate for this move and any following moves. As with other rate parameters this value is specified in current units per minute. By default this feedrate is interpreted according to the specification for LinuxCNC default state (trivial kinematics, CANON_XYZ feed reference mode, Units-Per-Minute mode). For details, refer to the LinuxCNC documentation.",
+            "de": "Setzt die Vorschubgeschwindigkeit (Feedrate) für diese und folgende Bewegungen (in Einheiten/Minute).",
             "en": "Set the requested movement rate for this move and any following moves. As with other rate parameters this value is specified in current units per minute. By default this feedrate is interpreted according to the specification for LinuxCNC default state (trivial kinematics, CANON_XYZ feed reference mode, Units-Per-Minute mode). For details, refer to the LinuxCNC documentation."
           }
         }
@@ -185,7 +185,7 @@
           "key": "X",
           "type": "number",
           "desc": {
-            "de": "An absolute or relative coordinate on the X axis (in current units).",
+            "de": "Eine absolute oder relative Koordinate auf der X-Achse (in aktuellen Einheiten).",
             "en": "An absolute or relative coordinate on the X axis (in current units)."
           }
         },
@@ -193,7 +193,7 @@
           "key": "Y",
           "type": "number",
           "desc": {
-            "de": "An absolute or relative coordinate on the Y axis (in current units).",
+            "de": "Eine absolute oder relative Koordinate auf der Y-Achse (in aktuellen Einheiten).",
             "en": "An absolute or relative coordinate on the Y axis (in current units)."
           }
         },
@@ -201,7 +201,7 @@
           "key": "Z",
           "type": "number",
           "desc": {
-            "de": "An absolute or relative coordinate on the Z axis (in current units).",
+            "de": "Eine absolute oder relative Koordinate auf der Z-Achse (in aktuellen Einheiten).",
             "en": "An absolute or relative coordinate on the Z axis (in current units)."
           }
         },
@@ -209,7 +209,7 @@
           "key": "A",
           "type": "number",
           "desc": {
-            "de": "An absolute or relative coordinate on the A axis (in current units).",
+            "de": "Eine absolute oder relative Koordinate auf der A-Achse (in aktuellen Einheiten).",
             "en": "An absolute or relative coordinate on the A axis (in current units)."
           }
         },
@@ -217,7 +217,7 @@
           "key": "B",
           "type": "number",
           "desc": {
-            "de": "An absolute or relative coordinate on the B axis (in current units).",
+            "de": "Eine absolute oder relative Koordinate auf der B-Achse (in aktuellen Einheiten).",
             "en": "An absolute or relative coordinate on the B axis (in current units)."
           }
         },
@@ -225,7 +225,7 @@
           "key": "C",
           "type": "number",
           "desc": {
-            "de": "An absolute or relative coordinate on the C axis (in current units).",
+            "de": "Eine absolute oder relative Koordinate auf der C-Achse (in aktuellen Einheiten).",
             "en": "An absolute or relative coordinate on the C axis (in current units)."
           }
         },
@@ -233,7 +233,7 @@
           "key": "U",
           "type": "number",
           "desc": {
-            "de": "An absolute or relative coordinate on the U axis (in current units).",
+            "de": "Eine absolute oder relative Koordinate auf der U-Achse (in aktuellen Einheiten).",
             "en": "An absolute or relative coordinate on the U axis (in current units)."
           }
         },
@@ -241,7 +241,7 @@
           "key": "V",
           "type": "number",
           "desc": {
-            "de": "An absolute or relative coordinate on the V axis (in current units).",
+            "de": "Eine absolute oder relative Koordinate auf der V-Achse (in aktuellen Einheiten).",
             "en": "An absolute or relative coordinate on the V axis (in current units)."
           }
         },
@@ -249,7 +249,7 @@
           "key": "W",
           "type": "number",
           "desc": {
-            "de": "An absolute or relative coordinate on the W axis (in current units).",
+            "de": "Eine absolute oder relative Koordinate auf der W-Achse (in aktuellen Einheiten).",
             "en": "An absolute or relative coordinate on the W axis (in current units)."
           }
         },
@@ -257,7 +257,7 @@
           "key": "E",
           "type": "number",
           "desc": {
-            "de": "An absolute or relative coordinate on the E (extruder) axis (in current units). The E axis describes the position of the filament in terms of input to the extruder feeder.",
+            "de": "Eine absolute oder relative Koordinate auf der E-Achse (Extruder). Position des Filaments relativ zum Extruder-Eingang.",
             "en": "An absolute or relative coordinate on the E (extruder) axis (in current units). The E axis describes the position of the filament in terms of input to the extruder feeder."
           }
         },
@@ -265,7 +265,7 @@
           "key": "F",
           "type": "number",
           "desc": {
-            "de": "Set the requested movement rate for this move and any following moves. As with other rate parameters this value is specified in current units per minute. By default this feedrate is interpreted according to the specification for LinuxCNC default state (trivial kinematics, CANON_XYZ feed reference mode, Units-Per-Minute mode). For details, refer to the LinuxCNC documentation.",
+            "de": "Setzt die Vorschubgeschwindigkeit (Feedrate) für diese und folgende Bewegungen (in Einheiten/Minute).",
             "en": "Set the requested movement rate for this move and any following moves. As with other rate parameters this value is specified in current units per minute. By default this feedrate is interpreted according to the specification for LinuxCNC default state (trivial kinematics, CANON_XYZ feed reference mode, Units-Per-Minute mode). For details, refer to the LinuxCNC documentation."
           }
         }
@@ -343,7 +343,7 @@
           "key": "A",
           "type": "number",
           "desc": {
-            "de": "A coordinate on the A axis",
+            "de": "Eine Koordinate auf der A-Achse",
             "en": "A coordinate on the A axis"
           }
         },
@@ -391,7 +391,7 @@
           "key": "I",
           "type": "number",
           "desc": {
-            "de": "An offset from the current X position to use as the arc center",
+            "de": "Ein Versatz von der aktuellen X-Position zum Bogenmittelpunkt",
             "en": "An offset from the current X position to use as the arc center"
           }
         },
@@ -399,7 +399,7 @@
           "key": "J",
           "type": "number",
           "desc": {
-            "de": "An offset from the current Y position to use as the arc center",
+            "de": "Ein Versatz von der aktuellen Y-Position zum Bogenmittelpunkt",
             "en": "An offset from the current Y position to use as the arc center"
           }
         },
@@ -415,7 +415,7 @@
           "key": "E",
           "type": "number",
           "desc": {
-            "de": "The amount to extrude between the start point and end point",
+            "de": "Menge an Material, die zwischen Start- und Endpunkt extrudiert wird",
             "en": "The amount to extrude between the start point and end point"
           }
         },
@@ -431,7 +431,7 @@
           "key": "P",
           "type": "number",
           "desc": {
-            "de": "Specify complete circles.",
+            "de": "Vollkreise spezifizieren.",
             "en": "Specify complete circles."
           }
         }
@@ -509,7 +509,7 @@
           "key": "A",
           "type": "number",
           "desc": {
-            "de": "A coordinate on the A axis",
+            "de": "Eine Koordinate auf der A-Achse",
             "en": "A coordinate on the A axis"
           }
         },
@@ -557,7 +557,7 @@
           "key": "I",
           "type": "number",
           "desc": {
-            "de": "An offset from the current X position to use as the arc center",
+            "de": "Ein Versatz von der aktuellen X-Position zum Bogenmittelpunkt",
             "en": "An offset from the current X position to use as the arc center"
           }
         },
@@ -565,7 +565,7 @@
           "key": "J",
           "type": "number",
           "desc": {
-            "de": "An offset from the current Y position to use as the arc center",
+            "de": "Ein Versatz von der aktuellen Y-Position zum Bogenmittelpunkt",
             "en": "An offset from the current Y position to use as the arc center"
           }
         },
@@ -581,7 +581,7 @@
           "key": "E",
           "type": "number",
           "desc": {
-            "de": "The amount to extrude between the start point and end point",
+            "de": "Menge an Material, die zwischen Start- und Endpunkt extrudiert wird",
             "en": "The amount to extrude between the start point and end point"
           }
         },
@@ -597,7 +597,7 @@
           "key": "P",
           "type": "number",
           "desc": {
-            "de": "Specify complete circles.",
+            "de": "Vollkreise spezifizieren.",
             "en": "Specify complete circles."
           }
         }
@@ -864,7 +864,7 @@
           "key": "P",
           "type": "unknown",
           "desc": {
-            "de": "Pattern style selection",
+            "de": "Muster-Auswahl",
             "en": "Pattern style selection"
           }
         },
@@ -872,7 +872,7 @@
           "key": "R",
           "type": "number",
           "desc": {
-            "de": "Radius of nozzle cleaning circle",
+            "de": "Radius des Düsenreinigungs-Kreises",
             "en": "Radius of nozzle cleaning circle"
           }
         },
@@ -880,7 +880,7 @@
           "key": "S",
           "type": "number",
           "desc": {
-            "de": "Number of repetitions of the pattern",
+            "de": "Anzahl der Wiederholungen des Musters",
             "en": "Number of repetitions of the pattern"
           }
         },
@@ -888,7 +888,7 @@
           "key": "T",
           "type": "number",
           "desc": {
-            "de": "Number of triangles in the zigzag pattern",
+            "de": "Anzahl der Dreiecke im Zick-Zack-Muster",
             "en": "Number of triangles in the zigzag pattern"
           }
         },
@@ -1215,7 +1215,7 @@
           "key": "P",
           "type": "number",
           "desc": {
-            "de": "Prime Length",
+            "de": "Prime-Länge",
             "en": "Prime Length"
           }
         },
@@ -2467,7 +2467,7 @@
           "key": "S",
           "type": "number",
           "desc": {
-            "de": "Expire time, in seconds",
+            "de": "Ablaufzeit in Sekunden",
             "en": "Expire time, in seconds"
           }
         },
@@ -2475,7 +2475,7 @@
           "key": "P",
           "type": "number",
           "desc": {
-            "de": "Expire time, in milliseconds",
+            "de": "Ablaufzeit in Millisekunden",
             "en": "Expire time, in milliseconds"
           }
         },
@@ -2483,7 +2483,7 @@
           "key": "string",
           "type": "unknown",
           "desc": {
-            "de": "An optional message to display on the LCD",
+            "de": "Eine optionale Nachricht für das LCD",
             "en": "An optional message to display on the LCD"
           }
         }
@@ -2528,7 +2528,7 @@
           "key": "S",
           "type": "number",
           "desc": {
-            "de": "Expire time, in seconds",
+            "de": "Ablaufzeit in Sekunden",
             "en": "Expire time, in seconds"
           }
         },
@@ -2536,7 +2536,7 @@
           "key": "P",
           "type": "number",
           "desc": {
-            "de": "Expire time, in milliseconds",
+            "de": "Ablaufzeit in Millisekunden",
             "en": "Expire time, in milliseconds"
           }
         },
@@ -2544,7 +2544,7 @@
           "key": "string",
           "type": "unknown",
           "desc": {
-            "de": "An optional message to display on the LCD",
+            "de": "Eine optionale Nachricht für das LCD",
             "en": "An optional message to display on the LCD"
           }
         }
@@ -3569,7 +3569,7 @@
           "key": "X",
           "type": "number",
           "desc": {
-            "de": "X Position",
+            "de": "X-Position",
             "en": "X Position"
           }
         },
@@ -4095,7 +4095,7 @@
           "key": "T",
           "type": "number",
           "desc": {
-            "de": "Target extruder",
+            "de": "Ziel-Extruder",
             "en": "Target extruder"
           }
         }
@@ -4236,7 +4236,7 @@
           "key": "I",
           "type": "number",
           "desc": {
-            "de": "Material preset index. Overrides S.",
+            "de": "Material-Voreinstellungs-Index. Überschreibt S.",
             "en": "Material preset index. Overrides S."
           }
         },
@@ -4366,7 +4366,7 @@
           "key": "I",
           "type": "number",
           "desc": {
-            "de": "Material preset index. Overrides S.",
+            "de": "Material-Voreinstellungs-Index. Überschreibt S.",
             "en": "Material preset index. Overrides S."
           }
         },
@@ -4382,7 +4382,7 @@
           "key": "P",
           "type": "number",
           "desc": {
-            "de": "Fan index",
+            "de": "Lüfter-Index",
             "en": "Fan index"
           }
         },
@@ -4421,7 +4421,7 @@
           "key": "P",
           "type": "number",
           "desc": {
-            "de": "Fan index",
+            "de": "Lüfter-Index",
             "en": "Fan index"
           }
         }
@@ -4500,7 +4500,7 @@
           "key": "I",
           "type": "number",
           "desc": {
-            "de": "Material preset index. Overrides S.",
+            "de": "Material-Voreinstellungs-Index. Überschreibt S.",
             "en": "Material preset index. Overrides S."
           }
         },
@@ -4516,7 +4516,7 @@
           "key": "R",
           "type": "number",
           "desc": {
-            "de": "Target temperature (wait for cooling or heating).",
+            "de": "Zieltemperatur (warten auf Aufheizen oder Abkühlen).",
             "en": "Target temperature (wait for cooling or heating)."
           }
         },
@@ -5349,7 +5349,7 @@
           "key": "I",
           "type": "number",
           "desc": {
-            "de": "Material preset index. Overrides S.",
+            "de": "Material-Voreinstellungs-Index. Überschreibt S.",
             "en": "Material preset index. Overrides S."
           }
         },
@@ -5357,7 +5357,7 @@
           "key": "S",
           "type": "number",
           "desc": {
-            "de": "Target temperature",
+            "de": "Zieltemperatur",
             "en": "Target temperature"
           }
         }
@@ -5440,7 +5440,7 @@
           "key": "S",
           "type": "number",
           "desc": {
-            "de": "Target laser coolant temperature.",
+            "de": "Zieltemperatur für Laserkühlmittel.",
             "en": "Target laser coolant temperature."
           }
         }
@@ -6076,7 +6076,7 @@
           "key": "I",
           "type": "number",
           "desc": {
-            "de": "Material preset index. Overrides S.",
+            "de": "Material-Voreinstellungs-Index. Überschreibt S.",
             "en": "Material preset index. Overrides S."
           }
         },
@@ -6084,7 +6084,7 @@
           "key": "S",
           "type": "number",
           "desc": {
-            "de": "Target temperature (wait only when heating).",
+            "de": "Zieltemperatur (nur auf Aufheizen warten).",
             "en": "Target temperature (wait only when heating)."
           }
         },
@@ -6092,7 +6092,7 @@
           "key": "R",
           "type": "number",
           "desc": {
-            "de": "Target temperature (wait for cooling or heating).",
+            "de": "Zieltemperatur (warten auf Aufheizen oder Abkühlen).",
             "en": "Target temperature (wait for cooling or heating)."
           }
         },
@@ -6144,7 +6144,7 @@
           "key": "S",
           "type": "number",
           "desc": {
-            "de": "Target temperature (wait only when heating).",
+            "de": "Zieltemperatur (nur auf Aufheizen warten).",
             "en": "Target temperature (wait only when heating)."
           }
         },
@@ -6152,7 +6152,7 @@
           "key": "R",
           "type": "number",
           "desc": {
-            "de": "Target temperature (wait for cooling or heating).",
+            "de": "Zieltemperatur (warten auf Aufheizen oder Abkühlen).",
             "en": "Target temperature (wait for cooling or heating)."
           }
         }
@@ -6238,7 +6238,7 @@
           "key": "S",
           "type": "number",
           "desc": {
-            "de": "Target laser coolant temperature.",
+            "de": "Zieltemperatur für Laserkühlmittel.",
             "en": "Target laser coolant temperature."
           }
         }
@@ -6396,7 +6396,7 @@
           "key": "T",
           "type": "number",
           "desc": {
-            "de": "Target extruder",
+            "de": "Ziel-Extruder",
             "en": "Target extruder"
           }
         },
@@ -6481,7 +6481,7 @@
           "key": "T",
           "type": "number",
           "desc": {
-            "de": "Target extruder",
+            "de": "Ziel-Extruder",
             "en": "Target extruder"
           }
         }
@@ -6794,7 +6794,7 @@
           "key": "S",
           "type": "number",
           "desc": {
-            "de": "Retract length",
+            "de": "Rückzugslänge",
             "en": "Retract length"
           }
         },
@@ -7146,7 +7146,7 @@
           "key": "F",
           "type": "number",
           "desc": {
-            "de": "Fan speed (0-255)",
+            "de": "Lüftergeschwindigkeit (0-255)",
             "en": "Fan speed (0-255)"
           }
         },
@@ -8131,7 +8131,7 @@
           "key": "P",
           "type": "number",
           "desc": {
-            "de": "Proportional value",
+            "de": "Proportional-Anteil (P-Wert)",
             "en": "Proportional value"
           }
         },
@@ -8139,7 +8139,7 @@
           "key": "I",
           "type": "number",
           "desc": {
-            "de": "Integral value",
+            "de": "Integral-Anteil (I-Wert)",
             "en": "Integral value"
           }
         },
@@ -8147,7 +8147,7 @@
           "key": "D",
           "type": "number",
           "desc": {
-            "de": "Derivative value",
+            "de": "Ableitungs-Anteil (D-Wert)",
             "en": "Derivative value"
           }
         },
@@ -8280,7 +8280,7 @@
           "key": "S",
           "type": "number",
           "desc": {
-            "de": "Target temperature",
+            "de": "Zieltemperatur",
             "en": "Target temperature"
           }
         },
@@ -8329,7 +8329,7 @@
           "key": "P",
           "type": "number",
           "desc": {
-            "de": "Proportional value",
+            "de": "Proportional-Anteil (P-Wert)",
             "en": "Proportional value"
           }
         },
@@ -8337,7 +8337,7 @@
           "key": "I",
           "type": "number",
           "desc": {
-            "de": "Integral value",
+            "de": "Integral-Anteil (I-Wert)",
             "en": "Integral value"
           }
         },
@@ -8345,7 +8345,7 @@
           "key": "D",
           "type": "number",
           "desc": {
-            "de": "Derivative value",
+            "de": "Ableitungs-Anteil (D-Wert)",
             "en": "Derivative value"
           }
         }
@@ -8559,7 +8559,7 @@
           "key": "P",
           "type": "number",
           "desc": {
-            "de": "Proportional value",
+            "de": "Proportional-Anteil (P-Wert)",
             "en": "Proportional value"
           }
         },
@@ -8567,7 +8567,7 @@
           "key": "I",
           "type": "number",
           "desc": {
-            "de": "Integral value",
+            "de": "Integral-Anteil (I-Wert)",
             "en": "Integral value"
           }
         },
@@ -8575,7 +8575,7 @@
           "key": "D",
           "type": "number",
           "desc": {
-            "de": "Derivative value",
+            "de": "Ableitungs-Anteil (D-Wert)",
             "en": "Derivative value"
           }
         }
@@ -8727,7 +8727,7 @@
           "key": "S",
           "type": "unknown",
           "desc": {
-            "de": "Select the pin to set for all specified axes.",
+            "de": "Wähle den Pin für alle angegebenen Achsen.",
             "en": "Select the pin to set for all specified axes."
           }
         },
@@ -8980,7 +8980,7 @@
           "key": "S",
           "type": "number",
           "desc": {
-            "de": "Solenoid index",
+            "de": "Solenoid-Index",
             "en": "Solenoid index"
           }
         }
@@ -9026,7 +9026,7 @@
           "key": "S",
           "type": "number",
           "desc": {
-            "de": "Solenoid index",
+            "de": "Solenoid-Index",
             "en": "Solenoid index"
           }
         }
@@ -9825,7 +9825,7 @@
           "key": "X",
           "type": "number",
           "desc": {
-            "de": "X position",
+            "de": "X-Position",
             "en": "X position"
           }
         },
@@ -11024,7 +11024,7 @@
           "key": "T",
           "type": "number",
           "desc": {
-            "de": "Index (tool) number for the E axis. If not specified, the E0 extruder.",
+            "de": "Werkzeug-Index für die E-Achse. Standard ist E0.",
             "en": "Index (tool) number for the E axis. If not specified, the E0 extruder."
           }
         }
@@ -11272,7 +11272,7 @@
           "key": "T",
           "type": "number",
           "desc": {
-            "de": "Target extruder",
+            "de": "Ziel-Extruder",
             "en": "Target extruder"
           }
         },
@@ -11288,7 +11288,7 @@
           "key": "U",
           "type": "number",
           "desc": {
-            "de": "Amount of retraction for unload (negative)",
+            "de": "Rückzugsmenge für Entladen (negativ)",
             "en": "Amount of retraction for unload (negative)"
           }
         },
@@ -11375,7 +11375,7 @@
           "key": "T",
           "type": "number",
           "desc": {
-            "de": "Target extruder",
+            "de": "Ziel-Extruder",
             "en": "Target extruder"
           }
         },
@@ -11383,7 +11383,7 @@
           "key": "U",
           "type": "number",
           "desc": {
-            "de": "Amount of retraction for unload (negative)",
+            "de": "Rückzugsmenge für Entladen (negativ)",
             "en": "Amount of retraction for unload (negative)"
           }
         },
@@ -11444,7 +11444,7 @@
           "key": "S",
           "type": "unknown",
           "desc": {
-            "de": "Select the pin to set for all specified axes.",
+            "de": "Wähle den Pin für alle angegebenen Achsen.",
             "en": "Select the pin to set for all specified axes."
           }
         },
@@ -11724,7 +11724,7 @@
           "key": "Z",
           "type": "number",
           "desc": {
-            "de": "Move the Z axis by this distance",
+            "de": "Bewege die Z-Achse um diesen Abstand",
             "en": "Move the Z axis by this distance"
           }
         },
@@ -11779,7 +11779,7 @@
           "key": "Z",
           "type": "number",
           "desc": {
-            "de": "Move the Z axis by this distance",
+            "de": "Bewege die Z-Achse um diesen Abstand",
             "en": "Move the Z axis by this distance"
           }
         },
@@ -11966,7 +11966,7 @@
           "key": "string",
           "type": "unknown",
           "desc": {
-            "de": "Set Macro to the given commands, separated by the pipe character.",
+            "de": "Makro auf die angegebenen Befehle setzen (getrennt durch Pipe |).",
             "en": "Set Macro to the given commands, separated by the pipe character."
           }
         }
@@ -12021,7 +12021,7 @@
           "key": "string",
           "type": "unknown",
           "desc": {
-            "de": "Set Macro to the given commands, separated by the pipe character.",
+            "de": "Makro auf die angegebenen Befehle setzen (getrennt durch Pipe |).",
             "en": "Set Macro to the given commands, separated by the pipe character."
           }
         }
@@ -12076,7 +12076,7 @@
           "key": "string",
           "type": "unknown",
           "desc": {
-            "de": "Set Macro to the given commands, separated by the pipe character.",
+            "de": "Makro auf die angegebenen Befehle setzen (getrennt durch Pipe |).",
             "en": "Set Macro to the given commands, separated by the pipe character."
           }
         }
@@ -12131,7 +12131,7 @@
           "key": "string",
           "type": "unknown",
           "desc": {
-            "de": "Set Macro to the given commands, separated by the pipe character.",
+            "de": "Makro auf die angegebenen Befehle setzen (getrennt durch Pipe |).",
             "en": "Set Macro to the given commands, separated by the pipe character."
           }
         }
@@ -12186,7 +12186,7 @@
           "key": "string",
           "type": "unknown",
           "desc": {
-            "de": "Set Macro to the given commands, separated by the pipe character.",
+            "de": "Makro auf die angegebenen Befehle setzen (getrennt durch Pipe |).",
             "en": "Set Macro to the given commands, separated by the pipe character."
           }
         }
@@ -12241,7 +12241,7 @@
           "key": "string",
           "type": "unknown",
           "desc": {
-            "de": "Set Macro to the given commands, separated by the pipe character.",
+            "de": "Makro auf die angegebenen Befehle setzen (getrennt durch Pipe |).",
             "en": "Set Macro to the given commands, separated by the pipe character."
           }
         }
@@ -12296,7 +12296,7 @@
           "key": "string",
           "type": "unknown",
           "desc": {
-            "de": "Set Macro to the given commands, separated by the pipe character.",
+            "de": "Makro auf die angegebenen Befehle setzen (getrennt durch Pipe |).",
             "en": "Set Macro to the given commands, separated by the pipe character."
           }
         }
@@ -12351,7 +12351,7 @@
           "key": "string",
           "type": "unknown",
           "desc": {
-            "de": "Set Macro to the given commands, separated by the pipe character.",
+            "de": "Makro auf die angegebenen Befehle setzen (getrennt durch Pipe |).",
             "en": "Set Macro to the given commands, separated by the pipe character."
           }
         }
@@ -12406,7 +12406,7 @@
           "key": "string",
           "type": "unknown",
           "desc": {
-            "de": "Set Macro to the given commands, separated by the pipe character.",
+            "de": "Makro auf die angegebenen Befehle setzen (getrennt durch Pipe |).",
             "en": "Set Macro to the given commands, separated by the pipe character."
           }
         }
@@ -12461,7 +12461,7 @@
           "key": "string",
           "type": "unknown",
           "desc": {
-            "de": "Set Macro to the given commands, separated by the pipe character.",
+            "de": "Makro auf die angegebenen Befehle setzen (getrennt durch Pipe |).",
             "en": "Set Macro to the given commands, separated by the pipe character."
           }
         }
@@ -12763,7 +12763,7 @@
           "key": "E",
           "type": "number",
           "desc": {
-            "de": "Current for the E0 stepper",
+            "de": "Strom für den E0-Stepper",
             "en": "Current for the E0 stepper"
           }
         },
@@ -12771,7 +12771,7 @@
           "key": "I",
           "type": "number",
           "desc": {
-            "de": "Index for multiple steppers. (i.e., I1 for X2, Y2, Z2; I2 for Z3; I3 for Z4).",
+            "de": "Index für Mehrfach-Stepper.",
             "en": "Index for multiple steppers. (i.e., I1 for X2, Y2, Z2; I2 for Z3; I3 for Z4)."
           }
         },
@@ -12779,7 +12779,7 @@
           "key": "T",
           "type": "number",
           "desc": {
-            "de": "Index (tool) number for the E axis. If not specified, the E0 extruder.",
+            "de": "Werkzeug-Index für die E-Achse. Standard ist E0.",
             "en": "Index (tool) number for the E axis. If not specified, the E0 extruder."
           }
         },
@@ -12860,7 +12860,7 @@
           "key": "E",
           "type": "unknown",
           "desc": {
-            "de": "Current for the E0 stepper",
+            "de": "Strom für den E0-Stepper",
             "en": "Current for the E0 stepper"
           }
         },
@@ -13176,7 +13176,7 @@
           "key": "I",
           "type": "number",
           "desc": {
-            "de": "Index for multiple steppers. (i.e., I1 for X2, Y2, Z2; I2 for Z3; I3 for Z4).",
+            "de": "Index für Mehrfach-Stepper.",
             "en": "Index for multiple steppers. (i.e., I1 for X2, Y2, Z2; I2 for Z3; I3 for Z4)."
           }
         },
@@ -13184,7 +13184,7 @@
           "key": "T",
           "type": "number",
           "desc": {
-            "de": "Index (tool) number for the E axis. If not specified, the E0 extruder.",
+            "de": "Werkzeug-Index für die E-Achse. Standard ist E0.",
             "en": "Index (tool) number for the E axis. If not specified, the E0 extruder."
           }
         },
@@ -13297,7 +13297,7 @@
           "key": "I",
           "type": "number",
           "desc": {
-            "de": "Index for multiple steppers. (i.e., I1 for X2, Y2, Z2; I2 for Z3; I3 for Z4).",
+            "de": "Index für Mehrfach-Stepper.",
             "en": "Index for multiple steppers. (i.e., I1 for X2, Y2, Z2; I2 for Z3; I3 for Z4)."
           }
         },
@@ -13457,7 +13457,7 @@
           "key": "X",
           "type": "number",
           "desc": {
-            "de": "Monitor X with the given displacement (1 - 255mm) on either side of the current position.",
+            "de": "Überwache  mit der angegebenen Verschiebung (1-255mm) beidseitig der aktuellen Position.",
             "en": "Monitor X with the given displacement (1 - 255mm) on either side of the current position."
           }
         },
@@ -13465,7 +13465,7 @@
           "key": "Y",
           "type": "number",
           "desc": {
-            "de": "Monitor Y with the given displacement (1 - 255mm) on either side of the current position.",
+            "de": "Überwache  mit der angegebenen Verschiebung (1-255mm) beidseitig der aktuellen Position.",
             "en": "Monitor Y with the given displacement (1 - 255mm) on either side of the current position."
           }
         },
@@ -13473,7 +13473,7 @@
           "key": "Z",
           "type": "number",
           "desc": {
-            "de": "Monitor Z with the given displacement (1 - 255mm) on either side of the current position.",
+            "de": "Überwache  mit der angegebenen Verschiebung (1-255mm) beidseitig der aktuellen Position.",
             "en": "Monitor Z with the given displacement (1 - 255mm) on either side of the current position."
           }
         },
@@ -13481,7 +13481,7 @@
           "key": "E",
           "type": "number",
           "desc": {
-            "de": "Monitor E with the given displacement (1 - 255mm) on either side of the current position.",
+            "de": "Überwache  mit der angegebenen Verschiebung (1-255mm) beidseitig der aktuellen Position.",
             "en": "Monitor E with the given displacement (1 - 255mm) on either side of the current position."
           }
         },
@@ -13497,7 +13497,7 @@
           "key": "T",
           "type": "number",
           "desc": {
-            "de": "Current (mA) setting for TVAL (0 - 4A in 31.25mA increments, rounds down) - L6474 only. If unspecified, report current value from driver.",
+            "de": "Strom (mA) Einstellung für .",
             "en": "Current (mA) setting for TVAL (0 - 4A in 31.25mA increments, rounds down) - L6474 only. If unspecified, report current value from driver."
           }
         },
@@ -13554,7 +13554,7 @@
           "key": "X",
           "type": "number",
           "desc": {
-            "de": "Monitor X with the given displacement (1 - 255mm) on either side of the current position.",
+            "de": "Überwache  mit der angegebenen Verschiebung (1-255mm) beidseitig der aktuellen Position.",
             "en": "Monitor X with the given displacement (1 - 255mm) on either side of the current position."
           }
         },
@@ -13562,7 +13562,7 @@
           "key": "Y",
           "type": "number",
           "desc": {
-            "de": "Monitor Y with the given displacement (1 - 255mm) on either side of the current position.",
+            "de": "Überwache  mit der angegebenen Verschiebung (1-255mm) beidseitig der aktuellen Position.",
             "en": "Monitor Y with the given displacement (1 - 255mm) on either side of the current position."
           }
         },
@@ -13570,7 +13570,7 @@
           "key": "Z",
           "type": "number",
           "desc": {
-            "de": "Monitor Z with the given displacement (1 - 255mm) on either side of the current position.",
+            "de": "Überwache  mit der angegebenen Verschiebung (1-255mm) beidseitig der aktuellen Position.",
             "en": "Monitor Z with the given displacement (1 - 255mm) on either side of the current position."
           }
         },
@@ -13578,7 +13578,7 @@
           "key": "A",
           "type": "number",
           "desc": {
-            "de": "Monitor A with the given displacement (1 - 255mm) on either side of the current position.",
+            "de": "Überwache  mit der angegebenen Verschiebung (1-255mm) beidseitig der aktuellen Position.",
             "en": "Monitor A with the given displacement (1 - 255mm) on either side of the current position."
           }
         },
@@ -13586,7 +13586,7 @@
           "key": "B",
           "type": "number",
           "desc": {
-            "de": "Monitor B with the given displacement (1 - 255mm) on either side of the current position.",
+            "de": "Überwache  mit der angegebenen Verschiebung (1-255mm) beidseitig der aktuellen Position.",
             "en": "Monitor B with the given displacement (1 - 255mm) on either side of the current position."
           }
         },
@@ -13594,7 +13594,7 @@
           "key": "C",
           "type": "number",
           "desc": {
-            "de": "Monitor C with the given displacement (1 - 255mm) on either side of the current position.",
+            "de": "Überwache  mit der angegebenen Verschiebung (1-255mm) beidseitig der aktuellen Position.",
             "en": "Monitor C with the given displacement (1 - 255mm) on either side of the current position."
           }
         },
@@ -13602,7 +13602,7 @@
           "key": "U",
           "type": "number",
           "desc": {
-            "de": "Monitor U with the given displacement (1 - 255mm) on either side of the current position.",
+            "de": "Überwache  mit der angegebenen Verschiebung (1-255mm) beidseitig der aktuellen Position.",
             "en": "Monitor U with the given displacement (1 - 255mm) on either side of the current position."
           }
         },
@@ -13610,7 +13610,7 @@
           "key": "V",
           "type": "number",
           "desc": {
-            "de": "Monitor V with the given displacement (1 - 255mm) on either side of the current position.",
+            "de": "Überwache  mit der angegebenen Verschiebung (1-255mm) beidseitig der aktuellen Position.",
             "en": "Monitor V with the given displacement (1 - 255mm) on either side of the current position."
           }
         },
@@ -13618,7 +13618,7 @@
           "key": "W",
           "type": "number",
           "desc": {
-            "de": "Monitor W with the given displacement (1 - 255mm) on either side of the current position.",
+            "de": "Überwache  mit der angegebenen Verschiebung (1-255mm) beidseitig der aktuellen Position.",
             "en": "Monitor W with the given displacement (1 - 255mm) on either side of the current position."
           }
         },
@@ -13626,7 +13626,7 @@
           "key": "E",
           "type": "number",
           "desc": {
-            "de": "Monitor E with the given displacement (1 - 255mm) on either side of the current position.",
+            "de": "Überwache  mit der angegebenen Verschiebung (1-255mm) beidseitig der aktuellen Position.",
             "en": "Monitor E with the given displacement (1 - 255mm) on either side of the current position."
           }
         },
@@ -13650,7 +13650,7 @@
           "key": "T",
           "type": "number",
           "desc": {
-            "de": "Current (mA) setting for TVAL (0 - 4A in 31.25mA increments, rounds down) - L6474 only. Report current value from driver if not specified.",
+            "de": "Strom (mA) Einstellung für .",
             "en": "Current (mA) setting for TVAL (0 - 4A in 31.25mA increments, rounds down) - L6474 only. Report current value from driver if not specified."
           }
         },
@@ -13699,7 +13699,7 @@
           "key": "X",
           "type": "number",
           "desc": {
-            "de": "Monitor X with the given displacement (1 - 255mm) on either side of the current position.",
+            "de": "Überwache  mit der angegebenen Verschiebung (1-255mm) beidseitig der aktuellen Position.",
             "en": "Monitor X with the given displacement (1 - 255mm) on either side of the current position."
           }
         },
@@ -13707,7 +13707,7 @@
           "key": "Y",
           "type": "number",
           "desc": {
-            "de": "Monitor Y with the given displacement (1 - 255mm) on either side of the current position.",
+            "de": "Überwache  mit der angegebenen Verschiebung (1-255mm) beidseitig der aktuellen Position.",
             "en": "Monitor Y with the given displacement (1 - 255mm) on either side of the current position."
           }
         },
@@ -13715,7 +13715,7 @@
           "key": "Z",
           "type": "number",
           "desc": {
-            "de": "Monitor Z with the given displacement (1 - 255mm) on either side of the current position.",
+            "de": "Überwache  mit der angegebenen Verschiebung (1-255mm) beidseitig der aktuellen Position.",
             "en": "Monitor Z with the given displacement (1 - 255mm) on either side of the current position."
           }
         },
@@ -13723,7 +13723,7 @@
           "key": "E",
           "type": "number",
           "desc": {
-            "de": "Monitor E with the given displacement (1 - 255mm) on either side of the current position.",
+            "de": "Überwache  mit der angegebenen Verschiebung (1-255mm) beidseitig der aktuellen Position.",
             "en": "Monitor E with the given displacement (1 - 255mm) on either side of the current position."
           }
         },
@@ -13739,7 +13739,7 @@
           "key": "T",
           "type": "number",
           "desc": {
-            "de": "Current (mA) setting for TVAL (0 - 4A in 31.25mA increments, rounds down) - L6474 only. Report current value from driver if not specified.",
+            "de": "Strom (mA) Einstellung für .",
             "en": "Current (mA) setting for TVAL (0 - 4A in 31.25mA increments, rounds down) - L6474 only. Report current value from driver if not specified."
           }
         },
@@ -13832,7 +13832,7 @@
           "key": "I",
           "type": "number",
           "desc": {
-            "de": "Index for multiple steppers. (i.e., I1 for X2, Y2, Z2; I2 for Z3; I3 for Z4). If omitted, all steppers for the selected axes.",
+            "de": "Index für Mehrfach-Stepper. If omitted, all steppers for the selected axes.",
             "en": "Index for multiple steppers. (i.e., I1 for X2, Y2, Z2; I2 for Z3; I3 for Z4). If omitted, all steppers for the selected axes."
           }
         },
@@ -13958,7 +13958,7 @@
           "key": "I",
           "type": "number",
           "desc": {
-            "de": "Index for multiple steppers. (i.e., I1 for X2, Y2, Z2; I2 for Z3; I3 for Z4). If omitted, all steppers for the selected axes.",
+            "de": "Index für Mehrfach-Stepper. If omitted, all steppers for the selected axes.",
             "en": "Index for multiple steppers. (i.e., I1 for X2, Y2, Z2; I2 for Z3; I3 for Z4). If omitted, all steppers for the selected axes."
           }
         },
@@ -14405,7 +14405,7 @@
         "en": "Select or Report Tool"
       },
       "desc": {
-        "de": "Set or report the current extruder or other tool",
+        "de": "Setze oder berichte den aktuellen Extruder oder ein anderes Werkzeug",
         "en": "Set or report the current extruder or other tool"
       },
       "category": "toolchange",
@@ -14441,7 +14441,7 @@
           "key": "F",
           "type": "number",
           "desc": {
-            "de": "Movement feedrate for the tool-change.",
+            "de": "Bewegungsgeschwindigkeit für den Werkzeugwechsel.",
             "en": "Movement feedrate for the tool-change."
           }
         },
@@ -14449,7 +14449,7 @@
           "key": "S",
           "type": "bool",
           "desc": {
-            "de": "Specify movement in XY after the tool-change. (Default: allow)",
+            "de": "Bewegung in XY nach Werkzeugwechsel festlegen. (Standard: erlauben)",
             "en": "Specify movement in XY after the tool-change. (Default: allow)"
           }
         }
@@ -14464,7 +14464,7 @@
         "en": "Select or Report Tool"
       },
       "desc": {
-        "de": "Set or report the current extruder or other tool",
+        "de": "Setze oder berichte den aktuellen Extruder oder ein anderes Werkzeug",
         "en": "Set or report the current extruder or other tool"
       },
       "category": "toolchange",
@@ -14507,7 +14507,7 @@
           "key": "F",
           "type": "number",
           "desc": {
-            "de": "Movement feedrate for the tool-change.",
+            "de": "Bewegungsgeschwindigkeit für den Werkzeugwechsel.",
             "en": "Movement feedrate for the tool-change."
           }
         },
@@ -14515,7 +14515,7 @@
           "key": "S",
           "type": "bool",
           "desc": {
-            "de": "Specify movement in XY after the tool-change. (Default: allow)",
+            "de": "Bewegung in XY nach Werkzeugwechsel festlegen. (Standard: erlauben)",
             "en": "Specify movement in XY after the tool-change. (Default: allow)"
           }
         }
@@ -14641,7 +14641,7 @@
         "en": "Select or Report Tool"
       },
       "desc": {
-        "de": "Set or report the current extruder or other tool",
+        "de": "Setze oder berichte den aktuellen Extruder oder ein anderes Werkzeug",
         "en": "Set or report the current extruder or other tool"
       },
       "category": "toolchange",
@@ -14684,7 +14684,7 @@
           "key": "F",
           "type": "number",
           "desc": {
-            "de": "Movement feedrate for the tool-change.",
+            "de": "Bewegungsgeschwindigkeit für den Werkzeugwechsel.",
             "en": "Movement feedrate for the tool-change."
           }
         },
@@ -14692,7 +14692,7 @@
           "key": "S",
           "type": "bool",
           "desc": {
-            "de": "Specify movement in XY after the tool-change. (Default: allow)",
+            "de": "Bewegung in XY nach Werkzeugwechsel festlegen. (Standard: erlauben)",
             "en": "Specify movement in XY after the tool-change. (Default: allow)"
           }
         }
@@ -14707,7 +14707,7 @@
         "en": "Select or Report Tool"
       },
       "desc": {
-        "de": "Set or report the current extruder or other tool",
+        "de": "Setze oder berichte den aktuellen Extruder oder ein anderes Werkzeug",
         "en": "Set or report the current extruder or other tool"
       },
       "category": "toolchange",
@@ -14750,7 +14750,7 @@
           "key": "F",
           "type": "number",
           "desc": {
-            "de": "Movement feedrate for the tool-change.",
+            "de": "Bewegungsgeschwindigkeit für den Werkzeugwechsel.",
             "en": "Movement feedrate for the tool-change."
           }
         },
@@ -14758,7 +14758,7 @@
           "key": "S",
           "type": "bool",
           "desc": {
-            "de": "Specify movement in XY after the tool-change. (Default: allow)",
+            "de": "Bewegung in XY nach Werkzeugwechsel festlegen. (Standard: erlauben)",
             "en": "Specify movement in XY after the tool-change. (Default: allow)"
           }
         }
@@ -14773,7 +14773,7 @@
         "en": "Select or Report Tool"
       },
       "desc": {
-        "de": "Set or report the current extruder or other tool",
+        "de": "Setze oder berichte den aktuellen Extruder oder ein anderes Werkzeug",
         "en": "Set or report the current extruder or other tool"
       },
       "category": "toolchange",
@@ -14816,7 +14816,7 @@
           "key": "F",
           "type": "number",
           "desc": {
-            "de": "Movement feedrate for the tool-change.",
+            "de": "Bewegungsgeschwindigkeit für den Werkzeugwechsel.",
             "en": "Movement feedrate for the tool-change."
           }
         },
@@ -14824,7 +14824,7 @@
           "key": "S",
           "type": "bool",
           "desc": {
-            "de": "Specify movement in XY after the tool-change. (Default: allow)",
+            "de": "Bewegung in XY nach Werkzeugwechsel festlegen. (Standard: erlauben)",
             "en": "Specify movement in XY after the tool-change. (Default: allow)"
           }
         }
@@ -14839,7 +14839,7 @@
         "en": "Select or Report Tool"
       },
       "desc": {
-        "de": "Set or report the current extruder or other tool",
+        "de": "Setze oder berichte den aktuellen Extruder oder ein anderes Werkzeug",
         "en": "Set or report the current extruder or other tool"
       },
       "category": "toolchange",
@@ -14882,7 +14882,7 @@
           "key": "F",
           "type": "number",
           "desc": {
-            "de": "Movement feedrate for the tool-change.",
+            "de": "Bewegungsgeschwindigkeit für den Werkzeugwechsel.",
             "en": "Movement feedrate for the tool-change."
           }
         },
@@ -14890,7 +14890,7 @@
           "key": "S",
           "type": "bool",
           "desc": {
-            "de": "Specify movement in XY after the tool-change. (Default: allow)",
+            "de": "Bewegung in XY nach Werkzeugwechsel festlegen. (Standard: erlauben)",
             "en": "Specify movement in XY after the tool-change. (Default: allow)"
           }
         }
@@ -14905,7 +14905,7 @@
         "en": "Select or Report Tool"
       },
       "desc": {
-        "de": "Set or report the current extruder or other tool",
+        "de": "Setze oder berichte den aktuellen Extruder oder ein anderes Werkzeug",
         "en": "Set or report the current extruder or other tool"
       },
       "category": "toolchange",
@@ -14948,7 +14948,7 @@
           "key": "F",
           "type": "number",
           "desc": {
-            "de": "Movement feedrate for the tool-change.",
+            "de": "Bewegungsgeschwindigkeit für den Werkzeugwechsel.",
             "en": "Movement feedrate for the tool-change."
           }
         },
@@ -14956,7 +14956,7 @@
           "key": "S",
           "type": "bool",
           "desc": {
-            "de": "Specify movement in XY after the tool-change. (Default: allow)",
+            "de": "Bewegung in XY nach Werkzeugwechsel festlegen. (Standard: erlauben)",
             "en": "Specify movement in XY after the tool-change. (Default: allow)"
           }
         }
@@ -14971,7 +14971,7 @@
         "en": "Select or Report Tool"
       },
       "desc": {
-        "de": "Set or report the current extruder or other tool",
+        "de": "Setze oder berichte den aktuellen Extruder oder ein anderes Werkzeug",
         "en": "Set or report the current extruder or other tool"
       },
       "category": "toolchange",
@@ -15014,7 +15014,7 @@
           "key": "F",
           "type": "number",
           "desc": {
-            "de": "Movement feedrate for the tool-change.",
+            "de": "Bewegungsgeschwindigkeit für den Werkzeugwechsel.",
             "en": "Movement feedrate for the tool-change."
           }
         },
@@ -15022,7 +15022,7 @@
           "key": "S",
           "type": "bool",
           "desc": {
-            "de": "Specify movement in XY after the tool-change. (Default: allow)",
+            "de": "Bewegung in XY nach Werkzeugwechsel festlegen. (Standard: erlauben)",
             "en": "Specify movement in XY after the tool-change. (Default: allow)"
           }
         }
@@ -15037,7 +15037,7 @@
         "en": "Select or Report Tool"
       },
       "desc": {
-        "de": "Set or report the current extruder or other tool",
+        "de": "Setze oder berichte den aktuellen Extruder oder ein anderes Werkzeug",
         "en": "Set or report the current extruder or other tool"
       },
       "category": "toolchange",
@@ -15080,7 +15080,7 @@
           "key": "F",
           "type": "number",
           "desc": {
-            "de": "Movement feedrate for the tool-change.",
+            "de": "Bewegungsgeschwindigkeit für den Werkzeugwechsel.",
             "en": "Movement feedrate for the tool-change."
           }
         },
@@ -15088,7 +15088,7 @@
           "key": "S",
           "type": "bool",
           "desc": {
-            "de": "Specify movement in XY after the tool-change. (Default: allow)",
+            "de": "Bewegung in XY nach Werkzeugwechsel festlegen. (Standard: erlauben)",
             "en": "Specify movement in XY after the tool-change. (Default: allow)"
           }
         }
