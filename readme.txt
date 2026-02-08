@@ -43,8 +43,8 @@ G-code Reference provides an interactive, searchable reference for G-code comman
 
 == Installation ==
 
-1. **IMPORTANT:** If updating from an older version, deactivate and delete the old version first!
-2. Upload `gcode-reference-2.0.2.zip` via Plugins → Add New → Upload
+1. **Update:** Use `npm run zip` to generate `gcode-reference-update.zip`. Upload it via Plugins → Add New → Upload and confirm replacement.
+2. **Clean Install:** Upload `gcode-reference-update.zip` via Plugins → Add New → Upload
 3. Activate the plugin
 4. Add the shortcode `[gcode_reference]` to any page or post
 5. (Optional) Configure in Settings → G-code Reference

@@ -11,7 +11,8 @@
         "lint": "npm run lint:php && npm run lint:js",
         "format:php": "phpcbf --standard=WordPress gcode-reference.php admin/",
         "format:js": "eslint --fix assets/app.js",
-        "deploy": "npm run build && npm run lint"
+        "deploy": "npm run build && npm run lint",
+        "zip": "powershell -ExecutionPolicy Bypass -File build-plugin-zip.ps1"
     },
     "devDependencies": {
         "clean-css-cli": "^5.6.3",

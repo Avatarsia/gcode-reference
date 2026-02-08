@@ -1,7 +1,19 @@
-# ⚠️ INSTALLATION ANLEITUNG - BITTE GENAU BEFOLGEN!
+# ⚠️ INSTALLATION & UPDATE ANLEITUNG
 
-## 🚨 **PROBLEM:**
-Sie haben wahrscheinlich noch eine **alte Version** des Plugins installiert!
+## 🔄 **NEU: Einfaches Update (Empfohlen)**
+
+Dank des neuen Update-Skripts müssen Sie die alte Version **NICHT MEHR LÖSCHEN**!
+
+1. Erstellen Sie das Update-Paket: `npm run zip`
+2. Laden Sie `gcode-reference-update.zip` in WordPress hoch.
+3. Bestätigen Sie **"Das aktuelle Plugin durch das hochgeladene ersetzen"**.
+
+👉 **Details siehe:** [docs/UPDATING.md](docs/UPDATING.md)
+
+---
+
+## 🚨 **NUR BEI PROBLEMEN (Clean Install):**
+Falls Sie noch eine **sehr alte Version** (mit Versionsnummer im Ordnernamen) haben oder Probleme auftreten:
 
 Das führt zu:
 - ❌ Kein Settings-Menü
@@ -10,7 +22,7 @@ Das führt zu:
 
 ---
 
-## ✅ **LÖSUNG - SCHRITT FÜR SCHRITT:**
+## ✅ **LÖSUNG - SCHRITT FÜR SCHRITT (Clean Install):**
 
 ### **Schritt 1: Aufräumen**
 
